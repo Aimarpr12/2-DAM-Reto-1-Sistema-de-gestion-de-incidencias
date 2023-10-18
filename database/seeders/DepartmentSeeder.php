@@ -4,10 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-
-class PostSeeder extends Seeder
+class DepartmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,6 +16,5 @@ class PostSeeder extends Seeder
             "name"=>"Elorrieta",
             "created_at"=>now(),
             ]);
-            
     }
 }

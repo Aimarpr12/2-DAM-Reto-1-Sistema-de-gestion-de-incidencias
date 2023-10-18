@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
-
-
-class PostController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::all();
-        #dd($posts);
-        return view('posts.index',['posts' => $posts]);
+        $departments = Department::orderBy('created_at');
+        return view('departments.index',['departments' => $departments]);
     }
 
     /**
@@ -24,8 +21,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
-
+        //
     }
 
     /**
@@ -33,26 +29,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new Post();
-        $post->titulo = $request->titulo;
-        $post->texto = $request->texto;
-        $post->publicado = $request->has('publicado');
-        $post->save();
-        return redirect()->route('posts.index');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Department $department)
     {
-        return view('posts.show',['post'=>$post]);
+        return view('departments.show',['departments'=>$department]);
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Department $department)
     {
         //
     }
@@ -60,7 +52,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Department $department)
     {
         //
     }
@@ -68,7 +60,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Department $department)
     {
         //
     }
