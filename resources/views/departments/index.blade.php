@@ -2,16 +2,47 @@
 @section('content')
 
 
-<ul>
-    {{--esto es un comentario: recorremos el listado de posts--}}
-    @foreach ($departments as $department)
-        {{-- visualizamos los atributos del objeto --}}
-        <li>
-<a href="{{route('departments.show',$department)}}"> {{$department->titulo}}</a>.
-Escrito el {{$department->created_at}}
-</li>
-    @endforeach
-    <a href="/posts"> 
-      <button>Ir a otra página</button>
-</ul>
+<style>
+    .scrollable-container {
+        height: 70vh;
+        overflow-y: auto;
+    }
+</style>
+<div class="container">
+    <div class="scrollable-container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha de Creación</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($departments as $department)
+                <tr>
+                    <td><a href="{{route('departments.show', $department)}}">{{$department->name}}</a></td>
+                    <td>{{$department->created_at}}</td>
+                    <td class="text-center">
+                        <a class="btn btn-warning btn-sm" href="{{route('departments.edit', $department)}}" role="button">Editar</a>
+                    </td>
+                    <td class="text-center">
+                        <form action="{{route('departments.destroy', $department)}}" method="POST" style="display: inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <div class="d-flex justify-content-end mt-3">
+        <a class="btn btn-primary" href="{{route('departments.create')}}" role="button">Crear</a>
+    </div>
+</div>
+
+
 @endsection

@@ -26,7 +26,7 @@
                 
                 <a class="navbar-brand" href="{{route('departments.index')}}"> Departamentos</a>
                 <a class="navbar-brand" href="{{route('departments.index')}}"> Incidencias</a>
-                <a class="navbar-brand" href="{{route('departments.index')}}"> Categorias</a>
+                <a class="navbar-brand" href="{{route('categorias.index')}}"> Categorias</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

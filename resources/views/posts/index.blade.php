@@ -8,8 +8,9 @@
         {{-- visualizamos los atributos del objeto --}}
         <li>
             <a href="{{route('posts.show',$post)}}"> {{$post->title}}</a>
-             {{$post->titulo}} <a class="btn btn-warning btn-sm" href="{{route('posts.edit',$post)}}"
-role="button">Editar</a>
+             {{$post->titulo}} 
+             <a class="btn btn-warning btn-sm" href="{{route('posts.edit',$post)}}"
+                role="button">Editar</a>
 
         </li>
     @endforeach

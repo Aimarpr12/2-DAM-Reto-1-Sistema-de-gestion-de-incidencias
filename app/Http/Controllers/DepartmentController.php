@@ -12,7 +12,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::orderBy('created_at');
+        $departments = Department::all();
+        #dd($departments);
         return view('departments.index',['departments' => $departments]);
     }
 
@@ -21,7 +22,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('departments.create');
     }
 
     /**
@@ -29,7 +30,10 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $department = new Department();
+        $department->name = $request->name;
+        $department->save();
+        return redirect()->route('departments.index');
     }
 
     /**
@@ -37,8 +41,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        return view('departments.show',['departments'=>$department]);
-
+        return view('departments.show',['department'=>$department]);
     }
 
     /**
@@ -46,7 +49,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+        return view('departments.edit',['department'=>$department]);
     }
 
     /**
@@ -54,7 +57,10 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $department->name = $request->name;
+        $department->save();
+        return view('departments.show',['department'=>$department]);
+
     }
 
     /**
@@ -62,6 +68,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        $department->delete();
+        return redirect()->route('departments.index');
     }
 }

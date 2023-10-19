@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\CategoriaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,8 +22,10 @@ Route::get('/', function () {
 Route::resources([
     'posts' => PostController::class,
     'departments' => DepartmentController::class,
+    'categorias' => CategoriaController::class,
     ]);  
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
