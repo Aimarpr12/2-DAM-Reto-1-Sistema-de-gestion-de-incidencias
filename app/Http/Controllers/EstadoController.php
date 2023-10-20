@@ -12,7 +12,8 @@ class EstadoController extends Controller
      */
     public function index()
     {
-        //
+
+
     }
 
     /**
@@ -36,7 +37,7 @@ class EstadoController extends Controller
      */
     public function show(Estado $estado)
     {
-        //
+
     }
 
     /**

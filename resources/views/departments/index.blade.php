@@ -1,13 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-
-<style>
-    .scrollable-container {
-        height: 70vh;
-        overflow-y: auto;
-    }
-</style>
 <div class="container">
     <div class="scrollable-container">
         <table class="table table-bordered">
@@ -24,6 +17,7 @@
                 <tr>
                     <td><a href="{{route('departments.show', $department)}}">{{$department->name}}</a></td>
                     <td>{{$department->created_at}}</td>
+                    @auth
                     <td class="text-center">
                         <a class="btn btn-warning btn-sm" href="{{route('departments.edit', $department)}}" role="button">Editar</a>
                     </td>
@@ -34,6 +28,7 @@
                             <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
                         </form>
                     </td>
+                    @endauth
                 </tr>
                 @endforeach
             </tbody>
@@ -43,6 +38,4 @@
         <a class="btn btn-primary" href="{{route('departments.create')}}" role="button">Crear</a>
     </div>
 </div>
-
-
 @endsection

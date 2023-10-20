@@ -1,0 +1,63 @@
+.scrollable-container {
+    height: 70vh;
+    overflow-y: auto;
+}
+
+.custom-bg {
+    background-color: #aaa8a8;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.custom-col {
+    border-right: 1px solid #312e2e;
+    padding-right: 15px;
+}
+
+.Finalizado {
+    background-color: #1c9444;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 5px;
+}
+
+.cat-prio{
+    padding: 5px;
+}
+
+.Abierto {
+    background-color: #ff0000;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.Procesando{
+    background-color: #ff9800;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+
+
+.comentario {
+    background-color: aliceblue;
+    border-radius: 10px;
+    max-width: 90%;
+    margin: 10px 10px 10px 10px;
+    padding: 5px; /* Agrega relleno en lugar de background-color */
+}
+
+.txtComentario {
+    background-color: rgb(170, 200, 228);
+    border-radius: 10px;
+    margin: 20px 10px 10px 10px;
+    padding: 5px;
+}
+
+

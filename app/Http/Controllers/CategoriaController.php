@@ -21,7 +21,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('categorias.create');
     }
 
     /**
@@ -29,7 +29,11 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = new Department();
+        $categoria->name = $request->name;
+        $categoria->save();
+        return redirect()->route('incidencias.index');
+
     }
 
     /**

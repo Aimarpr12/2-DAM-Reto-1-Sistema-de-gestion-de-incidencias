@@ -18,10 +18,7 @@ class PostSeeder extends Seeder
             "name"=>"Elorrieta",
             "created_at"=>now(),
             ]);
-        DB::table('categoria')->insert([
-            "name"=>"Elorrieta",
-            "created_at"=>now(),
-            ]);
+   
             
     }
 }

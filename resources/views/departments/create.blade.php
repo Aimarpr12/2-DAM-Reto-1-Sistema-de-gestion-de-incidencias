@@ -5,7 +5,7 @@
     action="{{route('departments.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group mb-3">
-        <label for="name" class="form-label">Nombre</label>
+        <label for="name" class="form-label">Inserte nombre del departamento</label>
         <input type="text" class="form-control" id="name" name="name" required/>
     </div>
     <button type="submit" class="btn btn-primary" name="">Crear</button>

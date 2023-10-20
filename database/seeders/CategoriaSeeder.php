@@ -14,11 +14,11 @@ class CategoriaSeeder extends Seeder
     public function run(): void
     {
         DB::table('categorias')->insert([
-            "name"=>"Elorrieta",
+            "name"=>"Informatica",
             "created_at"=>now(),
             ]);
         DB::table('categorias')->insert([
-            "name"=>"Bilbao",
+            "name"=>"RRHH",
             "created_at"=>now(),
             ]);
         DB::table('categorias')->insert([
