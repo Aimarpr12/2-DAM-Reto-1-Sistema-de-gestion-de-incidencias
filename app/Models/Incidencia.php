@@ -21,4 +21,7 @@ class Incidencia extends Model{
     public function prioridad(): BelongsTo{
         return $this->belongsTo(Prioridad::class);
     }
+    public function user(): BelongsTo{
+        return $this->belongsTo(User::class);
+    }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Incidencia;
+use App\Models\Prioridad;
+use App\Models\Estado;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class IncidenciaController extends Controller
@@ -13,7 +16,7 @@ class IncidenciaController extends Controller
 
     public function index()
     {
-        $incidencias = Incidencia::all();
+        $incidencias = Incidencia::orderBy('created_at', 'desc')->get();
         return view('incidencias.index',['incidencias' => $incidencias]);
 
     }
@@ -23,7 +26,6 @@ class IncidenciaController extends Controller
         $user = Auth::user();
         $incidencias = $user->incidencias;
         return view('incidencias.mine', ['incidencias' => $incidencias]);
-
     }
 
     /**
@@ -31,7 +33,14 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        return view('incidencias.create');
+        $prioridad = Prioridad::all();
+        $estado = Estado::all();
+        $categoria = Categoria::all();
+        return view('incidencias.create', [
+            'prioridads' => $prioridad,
+            'estados' => $estado,
+            'categorias' => $categoria
+        ]);
     }
 
     /**
@@ -47,6 +56,7 @@ class IncidenciaController extends Controller
             $incidencia->prioridad_id = $request->prioridad_id;
             $incidencia->estado_id = $request->estado_id;
             $incidencia->categoria_id = $request->categoria_id;
+            $incidencia->user_id = auth()->user()->id;
             $incidencia->save();
             return redirect()->route('incidencias.index');
 
@@ -65,7 +75,7 @@ class IncidenciaController extends Controller
      */
     public function edit(Incidencia $incidencia)
     {
-        //
+        return view('incidencias.edit',['incidencia'=>$incidencia]);
     }
 
     /**
@@ -73,7 +83,18 @@ class IncidenciaController extends Controller
      */
     public function update(Request $request, Incidencia $incidencia)
     {
-        //
+        $request->validate([
+            'text' => 'required|string',
+            'title' => 'required|string',
+            'time' => 'required|integer',
+        ]);
+
+        $incidencia->title = $request->input('title');
+        $incidencia->text = $request->input('text');
+        $incidencia->time = $request->input('time');
+        $incidencia->save();
+
+        return redirect()->route('incidencias.show', ['incidencia' => $incidencia->id]);
     }
 
     /**
@@ -81,6 +102,7 @@ class IncidenciaController extends Controller
      */
     public function destroy(Incidencia $incidencia)
     {
-        //
+        $incidencia->delete();
+        return redirect()->route('incidencias.index');
     }
 }

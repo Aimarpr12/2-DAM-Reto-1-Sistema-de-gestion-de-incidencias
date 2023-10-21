@@ -49,15 +49,14 @@
     background-color: aliceblue;
     border-radius: 10px;
     max-width: 90%;
-    margin: 10px 10px 10px 10px;
-    padding: 5px; /* Agrega relleno en lugar de background-color */
-}
-
-.txtComentario {
-    background-color: rgb(170, 200, 228);
-    border-radius: 10px;
-    margin: 20px 10px 10px 10px;
+    margin: 10px auto; /* Centra verticalmente y ajusta el margen horizontal */
     padding: 5px;
+    margin-left: 20px;
 }
 
 
+.scrool-comentarios{
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: inherit;
+}

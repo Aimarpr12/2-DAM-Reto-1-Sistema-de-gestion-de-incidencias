@@ -8,8 +8,11 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Fecha de Creación</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
+                    <th>Usuarios</th>
+                    @auth
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    @endauth
                 </tr>
             </thead>
             <tbody>
@@ -17,16 +20,21 @@
                 <tr>
                     <td><a href="{{route('departments.show', $department)}}">{{$department->name}}</a></td>
                     <td>{{$department->created_at}}</td>
+                    <td>
+                        {{$department->user->count()}}
+                    </td>
                     @auth
                     <td class="text-center">
                         <a class="btn btn-warning btn-sm" href="{{route('departments.edit', $department)}}" role="button">Editar</a>
                     </td>
                     <td class="text-center">
-                        <form action="{{route('departments.destroy', $department)}}" method="POST" style="display: inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
-                        </form>
+                        @if($department->user->count()== 0)
+                            <form action="{{route('departments.destroy', $department)}}" method="POST" style="display: inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                            </form>
+                        @endif
                     </td>
                     @endauth
                 </tr>
@@ -34,8 +42,10 @@
             </tbody>
         </table>
     </div>
-    <div class="d-flex justify-content-end mt-3">
-        <a class="btn btn-primary" href="{{route('departments.create')}}" role="button">Crear</a>
-    </div>
+    @auth
+        <div class="d-flex justify-content-end mt-3">
+            <a class="btn btn-primary" href="{{route('departments.create')}}" role="button">Crear</a>
+        </div>
+    @endauth
 </div>
 @endsection

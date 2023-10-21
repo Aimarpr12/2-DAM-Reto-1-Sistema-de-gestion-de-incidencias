@@ -20,13 +20,19 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{route('posts.index')}}">
+                <a class="navbar-brand" href="{{route('incidencias.index')}}">
                     Comenta tu Chisme
                 </a>
-                
+
+                <a class="navbar-brand" href="{{route('incidencias.index')}}"><b>Incidencias</b></a>
                 <a class="navbar-brand" href="{{route('departments.index')}}"> Departamentos</a>
-                <a class="navbar-brand" href="{{route('incidencias.index')}}"> Incidencias</a>
-                <a class="navbar-brand" href="{{route('categorias.index')}}"> Categorias</a>
+                @auth
+                    @if(auth()->user()->department->id == 4)
+                        <a class="navbar-brand" href="{{route('categorias.index')}}"> Categorias</a>
+                        <a class="navbar-brand" href="{{route('prioridads.index')}}"> Prioridad</a>
+                        <a class="navbar-brand" href="{{route('estados.index')}}"> Estado</a>
+                    @endif
+                @endauth
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

@@ -12,8 +12,8 @@ class EstadoController extends Controller
      */
     public function index()
     {
-
-
+        $estados = Estado::orderBy('created_at')->get();
+        return view('estados.index',['estados' => $estados]);
     }
 
     /**
@@ -21,7 +21,7 @@ class EstadoController extends Controller
      */
     public function create()
     {
-        //
+        return view('estados.create');
     }
 
     /**
@@ -29,7 +29,19 @@ class EstadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'name.unique' => 'El nombre del estado ya existe.',
+        ];
+
+        $request->validate([
+            'name' => 'required|unique:estados',
+        ], $messages);
+
+        $estado = new Estado();
+        $estado->name = $request->name;
+        $estado->save();
+
+        return redirect()->route('estados.index');
     }
 
     /**
@@ -45,7 +57,7 @@ class EstadoController extends Controller
      */
     public function edit(Estado $estado)
     {
-        //
+        return view('estados.edit',['estado'=>$estado]);
     }
 
     /**
@@ -53,7 +65,16 @@ class EstadoController extends Controller
      */
     public function update(Request $request, Estado $estado)
     {
-        //
+        $messages = [
+            'name.unique' => 'El nombre del estado ya existe.',
+        ];
+
+        $request->validate([
+            'name' => 'required|unique:estados',
+        ], $messages);
+        $estado->name = $request->input('name');
+        $estado->save();
+        return redirect()->route('estados.index');
     }
 
     /**

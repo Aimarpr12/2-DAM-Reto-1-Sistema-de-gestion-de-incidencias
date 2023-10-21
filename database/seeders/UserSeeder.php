@@ -18,14 +18,23 @@ class UserSeeder extends Seeder
             "name"=>"Aimar",
             "email"=>"aimar.peleaar@elorrieta-errekamari.com",
             "password"=>bcrypt("12345678"),
+            "department_id"=>1,
             "created_at"=>now(),
             ]);
-            DB::table('users')->insert([
-                "name"=>"Milena",
-                "email"=>"milena@elorrieta-errekamari.com",
-                "password"=>bcrypt("12345678"),
-                "created_at"=>now(),
-                ]);
+        DB::table('users')->insert([
+            "name"=>"Milena",
+            "email"=>"milena@elorrieta-errekamari.com",
+            "password"=>bcrypt("12345678"),
+            "department_id"=>4,
+            "created_at"=>now(),
+            ]);
+        DB::table('users')->insert([
+            "name"=>"Juan",
+            "email"=>"juan@elorrieta-errekamari.com",
+            "password"=>bcrypt("12345678"),
+            "department_id"=>2,
+            "created_at"=>now(),
+            ]);
 
 
     }

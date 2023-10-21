@@ -30,6 +30,14 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'name.unique' => 'El nombre del departamento ya existe.',
+        ];
+
+        $request->validate([
+            'name' => 'required|unique:departments',
+        ], $messages);
+
         $department = new Department();
         $department->name = $request->name;
         $department->save();
@@ -57,6 +65,14 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
+        $messages = [
+            'name.unique' => 'El nombre del departamento ya existe.',
+        ];
+
+        $request->validate([
+            'name' => 'required|unique:departments',
+        ], $messages);
+
         $department->name = $request->name;
         $department->save();
         return view('departments.show',['department'=>$department]);

@@ -12,7 +12,8 @@ class PrioridadController extends Controller
      */
     public function index()
     {
-        //
+        $prioridads = Prioridad::orderBy('created_at')->get();
+        return view('prioridads.index',['prioridads' => $prioridads]);
     }
 
     /**
@@ -20,7 +21,7 @@ class PrioridadController extends Controller
      */
     public function create()
     {
-        //
+        return view('prioridads.create');
     }
 
     /**
@@ -28,7 +29,19 @@ class PrioridadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'name.unique' => 'El nombre de la categoría ya existe.',
+        ];
+
+        $request->validate([
+            'name' => 'required|unique:prioridads',
+        ], $messages);
+
+        $prioridad = new Prioridad();
+        $prioridad->name = $request->name;
+        $prioridad->save();
+
+        return redirect()->route('prioridads.index');
     }
 
     /**
@@ -44,7 +57,7 @@ class PrioridadController extends Controller
      */
     public function edit(Prioridad $prioridad)
     {
-        //
+        return view('prioridads.edit',['prioridad'=>$prioridad]);
     }
 
     /**
@@ -52,7 +65,17 @@ class PrioridadController extends Controller
      */
     public function update(Request $request, Prioridad $prioridad)
     {
-        //
+        $messages = [
+            'name.unique' => 'El nombre de la prioridad ya existe.',
+        ];
+
+        $request->validate([
+            'name' => 'required|unique:prioridads',
+        ], $messages);
+
+        $prioridad->name = $request->input('name');
+        $prioridad->save();
+        return redirect()->route('prioridads.index');
     }
 
     /**
@@ -60,6 +83,10 @@ class PrioridadController extends Controller
      */
     public function destroy(Prioridad $prioridad)
     {
-        //
+        foreach ($prioridad->incidencias as $incidencia){
+            $incidencia->prioridad_id = null;
+        }
+        $prioridad->delete();
+        return redirect()->route('prioridads.index');
     }
 }

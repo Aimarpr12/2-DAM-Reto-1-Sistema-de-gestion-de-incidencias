@@ -12,7 +12,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::orderBy('created_at')->get();
+        $categorias = Categoria::all();
         return view('categorias.index',['categorias' => $categorias]);
     }
 
@@ -29,11 +29,19 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $categoria = new Department();
+        $messages = [
+            'name.unique' => 'El nombre de la categoría ya existe.',
+        ];
+
+        $request->validate([
+            'name' => 'required|unique:categorias',
+        ], $messages);
+
+        $categoria = new Categoria();
         $categoria->name = $request->name;
         $categoria->save();
-        return redirect()->route('incidencias.index');
 
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -49,7 +57,7 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        //
+        return view('categorias.edit',['categoria'=>$categoria]);
     }
 
     /**
@@ -57,7 +65,17 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        $messages = [
+            'name.unique' => 'El nombre de la categoría ya existe.',
+        ];
+
+        $request->validate([
+            'name' => 'required|unique:categorias',
+        ], $messages);
+
+        $categoria->name = $request->input('name');
+        $categoria->save();
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -65,6 +83,10 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        foreach ($categoria->incidencias as $incidencia){
+            $incidencia->categoria_id = null;
+        }
+        $categoria->delete();
+        return redirect()->route('categorias.index');
     }
 }

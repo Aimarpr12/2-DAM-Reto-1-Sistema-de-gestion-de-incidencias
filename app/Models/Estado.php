@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 class Estado extends Model
 {
     use HasFactory;
-    public function incidencia(): BelongsTo  {
-        return $this->belongsTo(Incidencia::class);
+    public function incidencias(): HasMany  {
+        return $this->hasMany(Incidencia::class);
     }
 
 }

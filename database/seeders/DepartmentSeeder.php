@@ -26,5 +26,9 @@ class DepartmentSeeder extends Seeder
             "name"=>"Ventas",
             "created_at"=>now(),
             ]);
+        DB::table('departments')->insert([
+            "name"=>"RRHH",
+            "created_at"=>now(),
+            ]);
     }
 }

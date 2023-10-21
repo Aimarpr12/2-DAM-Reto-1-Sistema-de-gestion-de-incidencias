@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comentario;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
+use App\Models\Comentario;
 
 class ComentarioController extends Controller
 {
@@ -20,15 +21,33 @@ class ComentarioController extends Controller
      */
     public function create()
     {
-        //
+        $id = request()->input('id'); // Accede al ID de la incidencia desde la solicitud
+
+        // Puedes pasar cualquier dato necesario a la vista, como el ID de la incidencia.
+        return view('comentarios.create', ['incidencia_id' => $id]);
     }
+
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $request->validate([
+            'text' => 'required|string',
+            'time' => 'required|integer',
+        ]);
+
+        $comentario = new Comentario();
+        $comentario->text = $request->input('text');
+        $comentario->incidencia_id = $id;
+        $comentario->time = $request->input('time');
+        $comentario->user_id = auth()->user()->id;
+        $comentario->save();
+
+        // Redirige a la vista de incidencia
+        return redirect()->route('incidencias.show', ['incidencia' => $id]);
     }
 
     /**
@@ -44,7 +63,7 @@ class ComentarioController extends Controller
      */
     public function edit(Comentario $comentario)
     {
-        //
+        return view('comentarios.edit',['comentario'=>$comentario]);
     }
 
     /**
@@ -52,7 +71,14 @@ class ComentarioController extends Controller
      */
     public function update(Request $request, Comentario $comentario)
     {
-        //
+        $request->validate([
+            'text' => 'required|string',
+            'time' => 'required|integer',
+        ]);
+        $comentario->text = $request->input('text');
+        $comentario->time = $request->input('time');
+        $comentario->save();
+        return redirect()->route('incidencias.show', ['incidencia' => $comentario->incidencia->id]);
     }
 
     /**
@@ -60,6 +86,7 @@ class ComentarioController extends Controller
      */
     public function destroy(Comentario $comentario)
     {
-        //
+        $comentario->delete();
+        return redirect()->route('incidencias.show', ['incidencia' => $comentario->incidencia->id]);
     }
 }

@@ -13,17 +13,18 @@ return new class extends Migration
     {
         Schema::create('incidencias', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
-            $table->string('text');
+            $table->string('title');
+            $table->longText('text');
             $table->integer('time');
-            $table->unsignedBigInteger('prioridad_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('prioridad_id')->nullable();
             $table->unsignedBigInteger('estado_id');
-            $table->unsignedBigInteger('categoria_id');
+            $table->unsignedBigInteger('categoria_id')->nullable();
             $table->timestamps();
-
-            $table->foreign('prioridad_id')->references('id')->on('prioridads');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('prioridad_id')->references('id')->on('prioridads')->constrained()->nullOnDelete();;
             $table->foreign('estado_id')->references('id')->on('estados');
-            $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->constrained()->nullOnDelete();
         });
     }
 

@@ -1,19 +1,17 @@
 @extends('layouts.app')
 @section('content')
 
-
-
 <div class="container">
 
-    <div id="categorias" class="row">
+    <div id="prioridads" class="row">
         <div class="col">
             <div>
-                <b>Categoria</b>
+                <b>Prioridad</b>
             </div>
             <br>
-            @foreach ($categorias as $categoria)
+            @foreach ($prioridads as $prioridad)
             <div>
-                {{$categoria->name}}
+                {{$prioridad->name}}
             </div>
             <br>
             @endforeach
@@ -23,10 +21,11 @@
                 <b>Num Incidencias</b>
             </div>
             <br>
-            @foreach ($categorias as $categoria)
+            @foreach ($prioridads as $prioridad)
             <div>
-                @if($categoria->incidencias)
-                    {{$categoria->incidencias->count()}}
+                @if($prioridad->incidencias)
+                    {{$prioridad->incidencias->count()}}
+
                 @else
                     0
                 @endif
@@ -39,9 +38,9 @@
                 <b>Editar</b>
             </div>
             <br>
-            @foreach ($categorias as $categoria)
+            @foreach ($prioridads as $prioridad)
             <div>
-                <a class="btn btn-warning btn-sm" href="{{route('categorias.edit', $categoria)}}" role="button">Editar</a>
+                <a class="btn btn-warning btn-sm" href="{{route('prioridads.edit', $prioridad)}}" role="button">Editar</a>
             </div>
             <br>
             @endforeach
@@ -51,9 +50,9 @@
                 <b>Eliminar</b>
             </div>
             <br>
-            @foreach ($categorias as $categoria)
+            @foreach ($prioridads as $prioridad)
             <div>
-                <form action="{{route('categorias.destroy', $categoria)}}" method="POST" style="display: inline">
+                <form action="{{route('prioridads.destroy', $prioridad)}}" method="POST" style="display: inline">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
@@ -63,7 +62,7 @@
             @endforeach
         </div>
     </div>
-    <a class="btn btn-primary" href="{{route('categorias.create')}}" role="button">Crear</a>
+    <a class="btn btn-primary" href="{{route('prioridads.create')}}" role="button">Crear</a>
 
 </div>
 

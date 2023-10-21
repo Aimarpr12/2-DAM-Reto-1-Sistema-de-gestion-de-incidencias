@@ -14,21 +14,21 @@
         <input type="number" class="form-control" id="time" name="time" required/>
         <label for="text" class="form-label">Prioridad</label>
         <select class="form-control" id="prioridad_id" name="prioridad_id" required>
-            <option value="1">Alta</option>
-            <option value="2">Media</option>
-            <option value="3">Baja</option>
+            @foreach ($prioridads as $prioridad)
+                <option value={{$prioridad->id}}>{{$prioridad->name}}</option>
+            @endforeach
         </select>
         <label for="text" class="form-label">Estado</label>
         <select class="form-control" id="estado_id" name="estado_id" required>
-          <option value="1">Abierto</option>
-            <option value="2">Porcesando</option>
-            <option value="3">Finalizado</option>
+            @foreach ($estados as $estado)
+                <option value={{$estado->id}}>{{$estado->name}}</option>
+            @endforeach
         </select>
         <label for="text" class="form-label">Categoria</label>
         <select class="form-control" id="categoria_id" name="categoria_id" required>
-           <option value="1">Informatica</option>
-            <option value="2">RRHH</option>
-            <option value="3">Ventas</option>-
+            @foreach ($categorias as $categoria)
+                <option value={{$categoria->id}}>{{$categoria->name}}</option>
+            @endforeach
 
         </select>
     </div>
