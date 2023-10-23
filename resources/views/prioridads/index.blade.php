@@ -2,67 +2,131 @@
 @section('content')
 
 <div class="container">
-
-    <div id="prioridads" class="row">
-        <div class="col">
-            <div>
+    <div id="prioridads" class="col">
+        <div class="row header">
+            <div class="col-md-10">
                 <b>Prioridad</b>
             </div>
-            <br>
-            @foreach ($prioridads as $prioridad)
-            <div>
-                {{$prioridad->name}}
+            <div class="col-md-1 d-flex justify-content-end">
+                @auth
+                <a href="{{route('prioridads.create')}}" role="button">
+                    <img class="mostrar-image" src="images/new.ico" alt="Crear" style="display: block; width: 30px; height: 30px;">
+                </a>
+                @endauth
             </div>
-            <br>
-            @endforeach
         </div>
-        <div class="col">
-            <div>
+        <hr style="border: none; border-top: 3px solid #000000; width: 92%;">
+        <div class="row">
+            <div class="col">
+                <b>Nombre</b>
+            </div>
+            <div class="col">
                 <b>Num Incidencias</b>
             </div>
-            <br>
-            @foreach ($prioridads as $prioridad)
-            <div>
-                @if($prioridad->incidencias)
-                    {{$prioridad->incidencias->count()}}
-
-                @else
-                    0
-                @endif
-            </div>
-            <br>
-            @endforeach
-        </div>
-        <div class="col">
-            <div>
+            <div class="col">
                 <b>Editar</b>
             </div>
-            <br>
-            @foreach ($prioridads as $prioridad)
-            <div>
-                <a class="btn btn-warning btn-sm" href="{{route('prioridads.edit', $prioridad)}}" role="button">Editar</a>
-            </div>
-            <br>
-            @endforeach
-        </div>
-        <div class="col">
-            <div>
+            <div class="col">
                 <b>Eliminar</b>
             </div>
-            <br>
-            @foreach ($prioridads as $prioridad)
-            <div>
-                <form action="{{route('prioridads.destroy', $prioridad)}}" method="POST" style="display: inline">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
-                </form>
+            <div class="col">
+                <b>Mostrar incidencias</b>
             </div>
-            <br>
-            @endforeach
         </div>
+        @foreach ($prioridads as $prioridad)
+            <div class="categoria">
+                <div class="row">
+                    <div class="col">
+                        {{$prioridad->name}}
+                    </div>
+                    <div class="col">
+                        @if($prioridad->incidencias)
+                            {{$prioridad->incidencias->count()}}
+                        @else
+                            0
+                        @endif
+                    </div>
+                    <div class="col">
+                        <a href="{{route('prioridads.edit', $prioridad)}}" role="button">
+                            <img class="mostrar-image img" src="images/edit.ico" alt="Editar" style="display: block; width: 30px; height: 30px;">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <form action="{{route('prioridads.destroy', $prioridad)}}" method="POST" style="display: inline">
+                            @csrf
+                            @method('DELETE')
+                            <button style="border: none; background: none; " type="submit" onclick="return confirm('¿Estás seguro?')">
+                                <img class="mostrar-image img" src="images/delete.ico" alt="Elimiar" style="display: block; width: 30px; height: 30px; ">
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        @if($prioridad->incidencias->count()>0)
+                        <button style="border: none; background: none;" class="toggle-incidencias btn btn-primary btn-sm" data-target=".incidencias">
+                            <img class="mostrar-image" src="images/mostrar.ico" alt="Mostrar" style="display: block; width: 30px; height: 30px;">
+                            <img class="ocultar-image" src="images/ocultar.ico" alt="Ocultar" style="display: none; width: 20px; height: 20px;">
+                        </button>
+                        @endif
+                    </div>
+                </div>
+                @if($prioridad->incidencias->count()>0)
+                    <div class="incidencias col-md-10" style="display: none" >
+                        <div class="col-md-11">
+                            <b style="font-size: 20px">Incidencias:</b>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1 d-flex justify-content-center">
+                                <b>Ver</b>
+                            </div>
+                            <div class="col">
+                                <b>Nombre</b>
+                            </div>
+                            <div class="col">
+                                <b>Fecha de creación</b>
+                            </div>
+                            <div class="col">
+                                <b>Nº Comentarios</b>
+                            </div>
+                            <div class="col">
+                                <b>Prioridad</b>
+                            </div>
+                            <div class="col">
+                                <b>Estado</b>
+                            </div>
+                        </div>
+                        @foreach ($prioridad->incidencias->sortByDesc('created_at')->take(5) as $incidencia)
+                            <div class="row">
+                                <div class="col-md-1 d-flex justify-content-center">
+                                    <a href="{{route('incidencias.show', $incidencia)}}">
+                                        <img class="mostrar-image" src="images/eye.ico" alt="Ver" style="display: block; width: 30px; height: 30px;">
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    {{$incidencia->title}}
+                                </div>
+                                <div class="col">
+                                    {{$incidencia->created_at}}
+                                </div>
+                                <div class="col">
+                                    {{$incidencia->comentarios->count('id')}}
+                                </div>
+                                <div class="col">
+                                    @if ($incidencia->prioridad !== null && $incidencia->prioridad->name !== null)
+                                        {{$incidencia->prioridad->name}}
+                                    @else
+                                        <span style="color: red;"><b>null</b></span>
+                                    @endif
+                                </div>
+                                <div class="col">
+                                    {{$incidencia->estado->name}}
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        @endforeach
     </div>
-    <a class="btn btn-primary" href="{{route('prioridads.create')}}" role="button">Crear</a>
 
 </div>
 

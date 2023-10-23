@@ -12,17 +12,24 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body>
+<body class="day-mode">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{route('incidencias.index')}}">
+                @guest
+                    <a class="navbar-brand" href="{{route('incidencias.index')}}">
+                        Comenta tu Chisme
+                    </a>
+                @else
+                <a class="navbar-brand" href="{{route('incidencias.mine')}}">
                     Comenta tu Chisme
                 </a>
+                @endguest
 
                 <a class="navbar-brand" href="{{route('incidencias.index')}}"><b>Incidencias</b></a>
                 <a class="navbar-brand" href="{{route('departments.index')}}"> Departamentos</a>
@@ -33,11 +40,10 @@
                         <a class="navbar-brand" href="{{route('estados.index')}}"> Estado</a>
                     @endif
                 @endauth
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                <button id="toggle-mode-button" style="border: none; background: none;">
+                    <img id="light-mode-image" src="images/modo_claro.ico" alt="Modo Claro" style="display: block; width: 30px; height: 30px;">
+                    <img id="dark-mode-image" src="images/modo_oscuro.ico" alt="Modo Oscuro" style="display: none; width: 20px; height: 20px;">
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
@@ -89,3 +95,4 @@
     </div>
 </body>
 </html>
+

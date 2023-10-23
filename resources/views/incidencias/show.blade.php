@@ -43,8 +43,11 @@
                         </div>
                         @if(auth()->user()->department->id == $incidencia->user->department->id)
                             <div class="col-md-9 d-flex justify-content-end">
-                                <a class="btn btn-primary" href="{{route('comentarios.create', ['id' => $incidencia->id])}}" role="button">Crear Comentario</a>
+                                <a href="{{route('comentarios.create', ['id' => $incidencia->id])}}" role="button">
+                                    <img class="mostrar-image" src="images/new.ico" alt="Crear" style="display: block; width: 30px; height: 30px;">
+                                </a>
                             </div>
+
                         @endif
                     </div>
                     <br>
@@ -67,15 +70,19 @@
                                 </div>
                                 <div class="col-md-1 txtComentario">
                                     @if(auth()->user()->id == $comentario->user->id)
-                                        <a class="btn btn-warning btn-sm" href="{{route('comentarios.edit', $comentario)}}" role="button">Editar</a>
+                                        <a href="{{route('comentarios.edit', $comentario)}}" role="button">
+                                            <img class="mostrar-image img" src="images/edit.ico" alt="Editar" style="display: block; width: 30px; height: 30px;">
+                                        </a>
                                     @endif
                                 </div>
-                                <div class="col-md-1 txtComentario">
+                                <div class="col-md-1 txtComentario" >
                                     @if(auth()->user()->id == $incidencia->user->id)
                                         <form action="{{route('comentarios.destroy', $comentario)}}" method="POST" style="display: inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Estás seguro?')">Delete</button>
+                                            <button type="submit" style="border: none; background: none;" onclick="return confirm('¿Estás seguro?')">
+                                                <img class="mostrar-image img" src="images/delete.ico" alt="Eliminar" style="display: block; width: 30px; height: 30px;">
+                                            </button>
                                         </form>
                                     @endif
                                 </div>
@@ -107,14 +114,18 @@
                     @auth
                         @if(auth()->user()->id == $incidencia->user->id)
                             <div>
-                                <a class="btn btn-warning btn-sm" href="{{route('incidencias.edit', $incidencia)}}" role="button">Editar</a>
+                                <a href="{{route('incidencias.edit', $incidencia)}}" role="button">
+                                    <img class="mostrar-image img" src="images/edit.ico"  alt="Editar" style="display: block; width: 30px; height: 30px;">
+                                </a>
                             </div>
                             <br>
                             <div>
                                 <form action="{{route('incidencias.destroy', $incidencia)}}" method="POST" style="display: inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                                    <button style="border: none; background: none; " type="submit" onclick="return confirm('¿Estás seguro?')">
+                                        <img class="mostrar-image img" src="images/delete.ico" alt="Delete" style="display: block; width: 30px; height: 30px; ">
+                                    </button>
                                 </form>
                             </div>
                         @endif

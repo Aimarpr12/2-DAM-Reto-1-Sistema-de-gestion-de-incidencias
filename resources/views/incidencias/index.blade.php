@@ -1,66 +1,101 @@
 @extends('layouts.app')
 @section('content')
 
-
-<style>
-    .scrollable-container {
-        height: 70vh;
-        overflow-y: auto;
-    }
-</style>
 <div class="container">
-    <div class="scrollable-container">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Fecha de creación</th>
-                    <th>Numero de comentarios</th>
-                    <th>Prioridad</th>
-                    <th>Categoria</th>
-                    <th>Estado</th>
-                    @auth
-                        <th>Editar</th>
-                    @endauth
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($incidencias as $incidencia)
-                <tr>
-                    <td><a href="{{route('incidencias.show', $incidencia)}}">{{$incidencia->title}}</a></td>
-                    <td>{{$incidencia->created_at}}</td>
-                    <td>{{$incidencia->comentarios->count('id')}}</td>
-                    <td>
+    <div id="categorias" class="col">
+        <div class="row header">
+            <div class="col-md-10">
+                <b>Incidencia</b>
+            </div>
+            <div class="col-md-1 d-flex justify-content-end">
+                @auth
+                <a href="{{route('incidencias.create')}}" role="button">
+                    <img class="mostrar-image" src="images/new.ico" alt="Crear" style="display: block; width: 30px; height: 30px;">
+                </a>
+                @endauth
+            </div>
+        </div>
+        <hr style="border: none; border-top: 3px solid #000000; width: 92%;">
+        <div class="row">
+            <div class="col-md-1 d-flex justify-content-center">
+                <b>Ver</b>
+            </div>
+            <div class="col-md-2">
+                <b>Nombre</b>
+            </div>
+            <div class="col-md-2">
+                <b>Fecha de creación</b>
+            </div>
+            <div class="col-md-2">
+                <b>Ult. Fecha de modificación</b>
+            </div>
+            <div class="col-md-1">
+                <b>Comentarios</b>
+            </div>
+            <div class="col-md-1">
+                <b>Prioridad</b>
+            </div>
+            <div class="col-md-1">
+                <b>Categoria</b>
+            </div>
+            <div class="col-md-1">
+                <b>Estado</b>
+            </div>
+            <div class="col-md-1">
+                @auth
+                <b>Editar</b>
+                @endauth
+            </div>
+        </div>
+        @foreach ($incidencias as $incidencia)
+            <div class="categoria">
+                <div class="row">
+                    <div class="col-md-1 d-flex justify-content-center">
+                        <a href="{{route('incidencias.show', $incidencia)}}">
+                            <img class="mostrar-image img" src="images/eye.ico" alt="Ver" style="display: block; width: 30px; height: 30px;">
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        {{$incidencia->title}}
+                    </div>
+                    <div class="col-md-2">
+                        {{$incidencia->created_at}}
+                    </div>
+                    <div class="col-md-2">
+                        {{$incidencia->updated_at}}
+                    </div>
+                    <div class="col-md-1">
+                        {{$incidencia->comentarios->count('id')}}
+                    </div>
+                    <div class="col-md-1">
                         @if ($incidencia->prioridad !== null && $incidencia->prioridad->name !== null)
                             {{$incidencia->prioridad->name}}
                         @else
                             <span style="color: red;"><b>null</b></span>
                         @endif
-                    </td>
-                    <td>
+                    </div>
+                    <div class="col-md-1">
                         @if ($incidencia->categoria !== null && $incidencia->categoria->name !== null)
                             {{$incidencia->categoria->name}}
                         @else
                             <span style="color: red;"><b>null</b></span>
                         @endif
-                    </td>
-                    <td>{{$incidencia->estado->name}}</td>
+                    </div>
+                    <div class="col-md-1">
+                        {{$incidencia->estado->name}}
+                    </div>
                     @auth
                         @if(auth()->user()->id == $incidencia->user->id)
-                            <td class="text-center">
-                                <a class="btn btn-warning btn-sm" href="{{route('incidencias.edit', $incidencia)}}" role="button">Editar</a>
-                            </td>
+                            <div class="col-md-1 d-flex justify-content-center">
+                                <a href="{{route('incidencias.edit', $incidencia)}}" role="button">
+                                    <img class="mostrar-image img" src="images/edit.ico" alt="Edit" style="display: block; width: 30px; height: 30px;">
+                                </a>
+                            </div>
                         @endif
                     @endauth
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </div>
+            </div>
+        @endforeach
     </div>
-    @auth
-        <div class="d-flex justify-content-end mt-3">
-            <a class="btn btn-primary" href="{{route('incidencias.create')}}" role="button">Crear</a>
-        </div>
-    @endauth
 </div>
 @endsection

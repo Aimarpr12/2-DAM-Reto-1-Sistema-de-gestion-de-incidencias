@@ -4,67 +4,131 @@
 
 
 <div class="container">
-
-    <div id="categorias" class="row">
-        <div class="col">
-            <div>
+    <div id="categorias" class="col">
+        <div class="row header">
+            <div class="col-md-10">
                 <b>Categoria</b>
             </div>
-            <br>
-            @foreach ($categorias as $categoria)
-            <div>
-                {{$categoria->name}}
+            <div class="col-md-1 d-flex justify-content-end">
+                @auth
+                <a href="{{route('categorias.create')}}" role="button">
+                    <img class="mostrar-image" src="images/new.ico" alt="Crear" style="display: block; width: 30px; height: 30px;">
+                </a>
+                @endauth
             </div>
-            <br>
-            @endforeach
         </div>
-        <div class="col">
-            <div>
+        <hr style="border: none; border-top: 3px solid #000000; width: 92%;">
+        <div class="row">
+            <div class="col">
+                <b>Nombre</b>
+            </div>
+            <div class="col">
                 <b>Num Incidencias</b>
             </div>
-            <br>
-            @foreach ($categorias as $categoria)
-            <div>
-                @if($categoria->incidencias)
-                    {{$categoria->incidencias->count()}}
-                @else
-                    0
-                @endif
-            </div>
-            <br>
-            @endforeach
-        </div>
-        <div class="col">
-            <div>
+            <div class="col">
                 <b>Editar</b>
             </div>
-            <br>
-            @foreach ($categorias as $categoria)
-            <div>
-                <a class="btn btn-warning btn-sm" href="{{route('categorias.edit', $categoria)}}" role="button">Editar</a>
-            </div>
-            <br>
-            @endforeach
-        </div>
-        <div class="col">
-            <div>
+            <div class="col">
                 <b>Eliminar</b>
             </div>
-            <br>
-            @foreach ($categorias as $categoria)
-            <div>
-                <form action="{{route('categorias.destroy', $categoria)}}" method="POST" style="display: inline">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
-                </form>
+            <div class="col">
+                <b>Mostrar incidencias</b>
             </div>
-            <br>
-            @endforeach
         </div>
+        @foreach ($categorias as $categoria)
+            <div class="categoria">
+                <div class="row">
+                    <div class="col">
+                        {{$categoria->name}}
+                    </div>
+                    <div class="col">
+                        @if($categoria->incidencias)
+                            {{$categoria->incidencias->count()}}
+                        @else
+                            0
+                        @endif
+                    </div>
+                    <div class="col ">
+                        <a href="{{route('categorias.edit', $categoria)}}" role="button">
+                            <img class="mostrar-image img" src="images/edit.ico" alt="Edit" style="display: block; width: 30px; height: 30px;">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <form action="{{route('categorias.destroy', $categoria)}}" method="POST" style="display: inline">
+                            @csrf
+                            @method('DELETE')
+                            <button style="border: none; background: none; " type="submit" onclick="return confirm('¿Estás seguro?')">
+                                <img class="mostrar-image img" src="images/delete.ico" alt="Eliminar" style="display: block; width: 30px; height: 30px; ">
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        @if($categoria->incidencias->count() > 0)
+                        <button style="border: none; background: none;" class="toggle-incidencias btn btn-primary btn-sm" data-target=".incidencias">
+                            <img class="mostrar-image" src="images/mostrar.ico" alt="Mostrar" style="display: block; width: 30px; height: 30px;">
+                            <img class="ocultar-image" src="images/ocultar.ico" alt="Ocultar" style="display: none; width: 20px; height: 20px;">
+                        </button>
+                        @endif
+                    </div>
+                </div>
+                @if($categoria->incidencias->count()>0)
+                    <div class="incidencias col-md-10" style="display: none" >
+                        <div class="col-md-11">
+                            <b style="font-size: 20px">Incidencias:</b>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1 d-flex justify-content-center">
+                                <b>Ver</b>
+                            </div>
+                            <div class="col">
+                                <b>Nombre</b>
+                            </div>
+                            <div class="col">
+                                <b>Fecha de creación</b>
+                            </div>
+                            <div class="col">
+                                <b>Nº Comentarios</b>
+                            </div>
+                            <div class="col">
+                                <b>Prioridad</b>
+                            </div>
+                            <div class="col">
+                                <b>Estado</b>
+                            </div>
+                        </div>
+                        @foreach ($categoria->incidencias->sortByDesc('created_at')->take(5) as $incidencia)
+                            <div class="row">
+                                <div class="col-md-1 d-flex justify-content-center">
+                                    <a href="{{route('incidencias.show', $incidencia)}}">
+                                        <img class="mostrar-image" src="images/eye.ico" alt="Ver" style="display: block; width: 30px; height: 30px;">
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    {{$incidencia->title}}
+                                </div>
+                                <div class="col">
+                                    {{$incidencia->created_at}}
+                                </div>
+                                <div class="col">
+                                    {{$incidencia->comentarios->count('id')}}
+                                </div>
+                                <div class="col">
+                                    @if ($incidencia->prioridad !== null && $incidencia->prioridad->name !== null)
+                                        {{$incidencia->prioridad->name}}
+                                    @else
+                                        <span style="color: red;"><b>null</b></span>
+                                    @endif
+                                </div>
+                                <div class="col">
+                                    {{$incidencia->estado->name}}
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        @endforeach
     </div>
-    <a class="btn btn-primary" href="{{route('categorias.create')}}" role="button">Crear</a>
-
 </div>
 
 @endsection

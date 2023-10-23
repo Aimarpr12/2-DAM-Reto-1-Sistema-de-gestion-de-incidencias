@@ -6,6 +6,7 @@ use App\Models\Incidencia;
 use App\Models\Prioridad;
 use App\Models\Estado;
 use App\Models\Categoria;
+use App\Models\Auth;
 use Illuminate\Http\Request;
 
 class IncidenciaController extends Controller
@@ -21,12 +22,14 @@ class IncidenciaController extends Controller
 
     }
 
+    /**
+     * Display the specified resource.
+     */
     public function mine()
     {
-        $user = Auth::user();
-        $incidencias = $user->incidencias;
-        return view('incidencias.mine', ['incidencias' => $incidencias]);
+        return view('incidencias.mine');
     }
+
 
     /**
      * Show the form for creating a new resource.

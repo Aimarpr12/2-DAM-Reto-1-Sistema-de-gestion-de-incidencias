@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('categoria_id')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('prioridad_id')->references('id')->on('prioridads')->constrained()->nullOnDelete();;
+            $table->foreign('prioridad_id')->references('id')->on('prioridads')->constrained()->nullOnDelete();
             $table->foreign('estado_id')->references('id')->on('estados');
             $table->foreign('categoria_id')->references('id')->on('categorias')->constrained()->nullOnDelete();
         });

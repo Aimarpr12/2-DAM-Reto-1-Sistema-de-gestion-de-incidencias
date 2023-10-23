@@ -5,7 +5,7 @@
     action="{{route('prioridads.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group mb-3">
-        <label for="name" class="form-label">Inserte nombre de la categoria:</label>
+        <label for="name" class="form-label">Inserte nombre de la prioridad:</label>
         <input type="text" class="form-control" id="name" name="name" required/>
         @error('name')
             <div class="text-danger">{{ $message }}</div>

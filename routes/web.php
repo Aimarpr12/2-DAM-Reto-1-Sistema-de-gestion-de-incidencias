@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
         'estados' => EstadoController::class,
     ]);
     Route::post('/comentarios/store/{id}', [ComentarioController::class, 'store'])->name('comentarios.store');
+    Route::get('incidencias/mine', [IncidenciaController::class, 'mine'])->name('incidencias.mine');
 });
 
 
