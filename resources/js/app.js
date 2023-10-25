@@ -1,4 +1,7 @@
 import './bootstrap';
+import "bootstrap-icons/font/bootstrap-icons.css";
+
+// Luego puedes usar los íconos en tu código HTML o CSS
 
 
 $(document).ready(function() {

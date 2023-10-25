@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" >
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,8 +41,8 @@
                     @endif
                 @endauth
                 <button id="toggle-mode-button" style="border: none; background: none;">
-                    <img id="light-mode-image" src="images/modo_claro.ico" alt="Modo Claro" style="display: block; width: 30px; height: 30px;">
-                    <img id="dark-mode-image" src="images/modo_oscuro.ico" alt="Modo Oscuro" style="display: none; width: 20px; height: 20px;">
+                    <img id="light-mode-image" src="/images/modo_claro.ico" alt="Modo Claro" style="display: block; width: 30px; height: 30px;">
+                    <img id="dark-mode-image" src="/images/modo_oscuro.ico" alt="Modo Oscuro" style="display: none; width: 20px; height: 20px;">
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->

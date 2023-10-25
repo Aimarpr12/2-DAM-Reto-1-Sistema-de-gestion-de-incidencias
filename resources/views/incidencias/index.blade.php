@@ -10,7 +10,7 @@
             <div class="col-md-1 d-flex justify-content-end">
                 @auth
                 <a href="{{route('incidencias.create')}}" role="button">
-                    <img class="mostrar-image" src="images/new.ico" alt="Crear" style="display: block; width: 30px; height: 30px;">
+                    <i class="bi bi-file-earmark-plus"></i>
                 </a>
                 @endauth
             </div>
@@ -52,7 +52,7 @@
                 <div class="row">
                     <div class="col-md-1 d-flex justify-content-center">
                         <a href="{{route('incidencias.show', $incidencia)}}">
-                            <img class="mostrar-image img" src="images/eye.ico" alt="Ver" style="display: block; width: 30px; height: 30px;">
+                            <i class="bi bi-eye"></i>
                         </a>
                     </div>
                     <div class="col-md-2">
@@ -88,7 +88,7 @@
                         @if(auth()->user()->id == $incidencia->user->id)
                             <div class="col-md-1 d-flex justify-content-center">
                                 <a href="{{route('incidencias.edit', $incidencia)}}" role="button">
-                                    <img class="mostrar-image img" src="images/edit.ico" alt="Edit" style="display: block; width: 30px; height: 30px;">
+                                    <i class="bi bi-pencil-square"></i>
                                 </a>
                             </div>
                         @endif

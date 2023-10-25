@@ -21,7 +21,42 @@
         <input type="number" class="form-control" id="time" name="time" required
         value="{{$incidencia->time}}"/>
     </div>
-
+    <div class="form-group mb-3">
+        <label for="text" class="form-label">Prioridad</label>
+        <select class="form-control" id="prioridad_id" name="prioridad_id" required>
+            @foreach ($prioridads as $prioridad)
+                <option value={{$prioridad->id}}
+                    @if($prioridad->id == $incidencia->prioridad_id)
+                        selected
+                    @endif
+                >{{$prioridad->name}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <label for="text" class="form-label">Estado</label>
+        <select class="form-control" id="estado_id" name="estado_id" required>
+            @foreach ($estados as $estado)
+                <option value={{$estado->id}}
+                    @if($estado->id == $incidencia->estado_id)
+                        selected
+                        @endif
+                    >{{$estado->name}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <label for="text" class="form-label">Categoria</label>
+        <select class="form-control" id="categoria_id" name="categoria_id" required>
+            @foreach ($categorias as $categoria)
+                <option value={{ $categoria->id }}
+                    @if($categoria->id == $incidencia->categoria_id)
+                        selected
+                    @endif
+                >{{$categoria->name}}</option>
+            @endforeach
+        </select>
+    </div>
     <div class="row">
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary" name="">Actualizar</button>

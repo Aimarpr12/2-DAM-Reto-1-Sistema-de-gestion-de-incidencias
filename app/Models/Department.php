@@ -19,5 +19,7 @@ class Department extends Model
     {
         return Department::all();
     }
-
+    public function incidencias(): HasMany {
+        return $this->hasMany(Incidencia::class);
+    }
 }

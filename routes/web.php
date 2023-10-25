@@ -20,6 +20,8 @@ use App\Http\Controllers\EstadoController;
 |
 */
 Route::middleware(['auth'])->group(function () {
+    Route::get('incidencias/mine', [IncidenciaController::class, 'mine'])->name('incidencias.mine');
+    Route::resource('comentarios', ComentarioController::class)->only(['store']);
     Route::resources([
         'posts' => PostController::class,
         'departments' => DepartmentController::class,
@@ -29,8 +31,7 @@ Route::middleware(['auth'])->group(function () {
         'prioridads' => PrioridadController::class,
         'estados' => EstadoController::class,
     ]);
-    Route::post('/comentarios/store/{id}', [ComentarioController::class, 'store'])->name('comentarios.store');
-    Route::get('incidencias/mine', [IncidenciaController::class, 'mine'])->name('incidencias.mine');
+
 });
 
 
@@ -45,7 +46,7 @@ Route::controller(PostController::class)->group(function () {
 
 
 Route::get('/', function () {
-    return redirect()->route('departments.index');
+    return redirect()->route('incidencias.index');
 });
 
 Route::resources([

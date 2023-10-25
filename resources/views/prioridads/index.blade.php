@@ -10,7 +10,7 @@
             <div class="col-md-1 d-flex justify-content-end">
                 @auth
                 <a href="{{route('prioridads.create')}}" role="button">
-                    <img class="mostrar-image" src="images/new.ico" alt="Crear" style="display: block; width: 30px; height: 30px;">
+                    <i class="bi bi-file-earmark-plus"></i>
                 </a>
                 @endauth
             </div>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col">
                         <a href="{{route('prioridads.edit', $prioridad)}}" role="button">
-                            <img class="mostrar-image img" src="images/edit.ico" alt="Editar" style="display: block; width: 30px; height: 30px;">
+                            <i class="bi bi-pencil-square"></i>
                         </a>
                     </div>
                     <div class="col">
@@ -56,7 +56,7 @@
                             @csrf
                             @method('DELETE')
                             <button style="border: none; background: none; " type="submit" onclick="return confirm('¿Estás seguro?')">
-                                <img class="mostrar-image img" src="images/delete.ico" alt="Elimiar" style="display: block; width: 30px; height: 30px; ">
+                                <i class="bi bi-trash3"></i>
                             </button>
                         </form>
                     </div>
@@ -98,7 +98,7 @@
                             <div class="row">
                                 <div class="col-md-1 d-flex justify-content-center">
                                     <a href="{{route('incidencias.show', $incidencia)}}">
-                                        <img class="mostrar-image" src="images/eye.ico" alt="Ver" style="display: block; width: 30px; height: 30px;">
+                                        <i class="bi bi-eye-fill"></i>
                                     </a>
                                 </div>
                                 <div class="col">

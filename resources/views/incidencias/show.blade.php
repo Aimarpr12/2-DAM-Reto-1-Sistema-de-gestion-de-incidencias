@@ -19,10 +19,12 @@
                     <div>
                         <p>{{$incidencia->text}}</p>
                     </div>
-                    <!--<div class="newComet colum">
+                    @auth
+                    <div class="newComet colum">
                         <div>
                             <label for="comentario">Comentarios:</label>
                         </div>
+                        @if(auth()->user()->department->id == $incidencia->user->department->id)
                         <div class="row">
                             <form method="POST" action={{ route('comentarios.store', ['id' => $incidencia->id]) }}">
                                 @csrf
@@ -30,12 +32,14 @@
                                     <textarea name="comentario" class="comment-text" placeholder="Escribe tu comentario aquí"></textarea>
                                 </div>
                                 <div class="col-md-2">
-                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                    <a href="{{route('comentarios.create', ['id' => $incidencia->id])}}" role="button">Enviar</a>
                                 </div>
                             </form>
                         </div>
+                        @endif
                     </div>
-                    -->
+
+
                     @auth
                     <div class="row">
                         <div class="col-md-1">
@@ -44,12 +48,13 @@
                         @if(auth()->user()->department->id == $incidencia->user->department->id)
                             <div class="col-md-9 d-flex justify-content-end">
                                 <a href="{{route('comentarios.create', ['id' => $incidencia->id])}}" role="button">
-                                    <img class="mostrar-image" src="images/new.ico" alt="Crear" style="display: block; width: 30px; height: 30px;">
+                                    <i class="bi bi-file-earmark-plus"></i>
                                 </a>
                             </div>
 
                         @endif
                     </div>
+                    @endauth
                     <br>
                     <div class="scrool-comentarios">
                         @foreach ($incidencia->comentarios as $comentario)
@@ -71,7 +76,7 @@
                                 <div class="col-md-1 txtComentario">
                                     @if(auth()->user()->id == $comentario->user->id)
                                         <a href="{{route('comentarios.edit', $comentario)}}" role="button">
-                                            <img class="mostrar-image img" src="images/edit.ico" alt="Editar" style="display: block; width: 30px; height: 30px;">
+                                            <i class="bi bi-pencil-square"></i>
                                         </a>
                                     @endif
                                 </div>
@@ -81,7 +86,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" style="border: none; background: none;" onclick="return confirm('¿Estás seguro?')">
-                                                <img class="mostrar-image img" src="images/delete.ico" alt="Eliminar" style="display: block; width: 30px; height: 30px;">
+                                                <i class="bi bi-trash3"></i>
                                             </button>
                                         </form>
                                     @endif
@@ -115,7 +120,7 @@
                         @if(auth()->user()->id == $incidencia->user->id)
                             <div>
                                 <a href="{{route('incidencias.edit', $incidencia)}}" role="button">
-                                    <img class="mostrar-image img" src="images/edit.ico"  alt="Editar" style="display: block; width: 30px; height: 30px;">
+                                    <i class="bi bi-pencil-square"></i>
                                 </a>
                             </div>
                             <br>
@@ -124,7 +129,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button style="border: none; background: none; " type="submit" onclick="return confirm('¿Estás seguro?')">
-                                        <img class="mostrar-image img" src="images/delete.ico" alt="Delete" style="display: block; width: 30px; height: 30px; ">
+                                        <i class="bi bi-trash3"></i>
                                     </button>
                                 </form>
                             </div>

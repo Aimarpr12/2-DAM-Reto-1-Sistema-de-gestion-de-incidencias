@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             "name"=>"Juan",
             "email"=>"juan@elorrieta-errekamari.com",
             "password"=>bcrypt("12345678"),
-            "department_id"=>2,
+            "department_id"=>1,
             "created_at"=>now(),
             ]);
 

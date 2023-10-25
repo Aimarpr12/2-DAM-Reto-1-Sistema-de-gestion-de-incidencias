@@ -78,7 +78,15 @@ class IncidenciaController extends Controller
      */
     public function edit(Incidencia $incidencia)
     {
-        return view('incidencias.edit',['incidencia'=>$incidencia]);
+        $prioridad = Prioridad::all();
+        $estado = Estado::all();
+        $categoria = Categoria::all();
+        return view('incidencias.edit', [
+            'incidencia'=>$incidencia,
+            'prioridads' => $prioridad,
+            'estados' => $estado,
+            'categorias' => $categoria
+        ]);
     }
 
     /**
@@ -92,9 +100,12 @@ class IncidenciaController extends Controller
             'time' => 'required|integer',
         ]);
 
-        $incidencia->title = $request->input('title');
-        $incidencia->text = $request->input('text');
-        $incidencia->time = $request->input('time');
+        $incidencia->title = $request->title;
+        $incidencia->text = $request->text;
+        $incidencia->time = $request->time;
+        $incidencia->prioridad_id = $request->prioridad_id;
+        $incidencia->estado_id = $request->estado_id;
+        $incidencia->categoria_id = $request->categoria_id;
         $incidencia->save();
 
         return redirect()->route('incidencias.show', ['incidencia' => $incidencia->id]);

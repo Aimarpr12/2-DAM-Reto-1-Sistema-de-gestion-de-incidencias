@@ -32,8 +32,9 @@ class ComentarioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
+        $incidencia_id = $request->input('id');
         $request->validate([
             'text' => 'required|string',
             'time' => 'required|integer',
@@ -41,13 +42,13 @@ class ComentarioController extends Controller
 
         $comentario = new Comentario();
         $comentario->text = $request->input('text');
-        $comentario->incidencia_id = $id;
+        $comentario->incidencia_id = $incidencia_id;
         $comentario->time = $request->input('time');
         $comentario->user_id = auth()->user()->id;
         $comentario->save();
 
         // Redirige a la vista de incidencia
-        return redirect()->route('incidencias.show', ['incidencia' => $id]);
+        return redirect()->route('incidencias.show', ['incidencia' => $incidencia_id]);
     }
 
     /**

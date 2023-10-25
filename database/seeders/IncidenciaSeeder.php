@@ -21,6 +21,7 @@ class IncidenciaSeeder extends Seeder
                 'prioridad_id' => 1,
                 'estado_id' => 1,
                 'categoria_id' => 1,
+                'department_id' => 2,
                 "created_at"=>now()
             ],
             [
@@ -31,6 +32,7 @@ class IncidenciaSeeder extends Seeder
                 'prioridad_id' => 2,
                 'estado_id' => 2,
                 'categoria_id' => 2,
+                'department_id' => 1,
                 "created_at"=>now()
             ],
             [
@@ -41,6 +43,7 @@ class IncidenciaSeeder extends Seeder
                 'prioridad_id' => 3,
                 'estado_id' => 3,
                 'categoria_id' => 1,
+                'department_id' => 2,
                 "created_at"=>now()
             ]
             ]);
