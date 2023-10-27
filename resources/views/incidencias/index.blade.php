@@ -71,18 +71,22 @@
                         @if ($incidencia->prioridad !== null && $incidencia->prioridad->name !== null)
                             {{$incidencia->prioridad->name}}
                         @else
-                            <span style="color: red;"><b>null</b></span>
+                            <span class="error"><b>Vacio</b></span>
                         @endif
                     </div>
                     <div class="col-md-1">
                         @if ($incidencia->categoria !== null && $incidencia->categoria->name !== null)
                             {{$incidencia->categoria->name}}
                         @else
-                            <span style="color: red;"><b>null</b></span>
+                            <span class="error"><b>Vacio</b></span>
                         @endif
                     </div>
                     <div class="col-md-1">
-                        {{$incidencia->estado->name}}
+                        @if ($incidencia->estado !== null && $incidencia->estado->name !== null)
+                            {{$incidencia->estado->name}}
+                        @else
+                            <span class="error"><b>Vacio</b></span>
+                        @endif
                     </div>
                     @auth
                         @if(auth()->user()->id == $incidencia->user->id)

@@ -21,7 +21,8 @@ class EstadoController extends Controller
      */
     public function create()
     {
-        return view('estados.create');
+        $estado = new Estado();
+        return view('estados.edit',['estado'=>$estado]);
     }
 
     /**
@@ -82,6 +83,7 @@ class EstadoController extends Controller
      */
     public function destroy(Estado $estado)
     {
-        //
+        $estado->delete();
+        return redirect()->route('estados.index');
     }
 }

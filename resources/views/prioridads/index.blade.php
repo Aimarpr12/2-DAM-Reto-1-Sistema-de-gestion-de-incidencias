@@ -47,11 +47,14 @@
                         @endif
                     </div>
                     <div class="col">
+                        @auth
                         <a href="{{route('prioridads.edit', $prioridad)}}" role="button">
                             <i class="bi bi-pencil-square"></i>
                         </a>
+                        @endauth
                     </div>
                     <div class="col">
+                        @auth
                         <form action="{{route('prioridads.destroy', $prioridad)}}" method="POST" style="display: inline">
                             @csrf
                             @method('DELETE')
@@ -59,6 +62,7 @@
                                 <i class="bi bi-trash3"></i>
                             </button>
                         </form>
+                        @endauth
                     </div>
                     <div class="col d-flex justify-content-center">
                         @if($prioridad->incidencias->count()>0)

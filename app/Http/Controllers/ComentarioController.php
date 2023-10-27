@@ -21,10 +21,10 @@ class ComentarioController extends Controller
      */
     public function create()
     {
-        $id = request()->input('id'); // Accede al ID de la incidencia desde la solicitud
-
-        // Puedes pasar cualquier dato necesario a la vista, como el ID de la incidencia.
-        return view('comentarios.create', ['incidencia_id' => $id]);
+        $id = request()->input('id');
+        $comentario = new Comentario();
+        $comentario->incidencia_id = $id;
+        return view('comentarios.edit',['comentario'=>$comentario]);
     }
 
 
@@ -64,6 +64,9 @@ class ComentarioController extends Controller
      */
     public function edit(Comentario $comentario)
     {
+        if(auth()->user()->id!= $comentario->user_id){
+            return redirect()->route('incidencias.show', ['incidencia' => $comentario->incidencia->id]);
+        }
         return view('comentarios.edit',['comentario'=>$comentario]);
     }
 
@@ -72,6 +75,7 @@ class ComentarioController extends Controller
      */
     public function update(Request $request, Comentario $comentario)
     {
+
         $request->validate([
             'text' => 'required|string',
             'time' => 'required|integer',

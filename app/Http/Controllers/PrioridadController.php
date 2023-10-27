@@ -21,7 +21,8 @@ class PrioridadController extends Controller
      */
     public function create()
     {
-        return view('prioridads.create');
+        $prioridad = new Prioridad();
+        return view('prioridads.edit',['prioridad'=>$prioridad]);
     }
 
     /**

@@ -36,10 +36,12 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
+        $incidencia = new Incidencia();
         $prioridad = Prioridad::all();
         $estado = Estado::all();
         $categoria = Categoria::all();
-        return view('incidencias.create', [
+        return view('incidencias.edit', [
+            'incidencia'=>$incidencia,
             'prioridads' => $prioridad,
             'estados' => $estado,
             'categorias' => $categoria
@@ -78,6 +80,11 @@ class IncidenciaController extends Controller
      */
     public function edit(Incidencia $incidencia)
     {
+        if(auth()->user()->id!= $incidencia->user_id){
+            $incidencias = Incidencia::orderBy('created_at', 'desc')->get();
+            return redirect()->route('incidencias.index', ['incidencias' => $incidencias]);
+        }
+
         $prioridad = Prioridad::all();
         $estado = Estado::all();
         $categoria = Categoria::all();

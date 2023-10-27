@@ -48,11 +48,14 @@
                         @endif
                     </div>
                     <div class="col">
+                        @auth
                         <a href="{{route('estados.edit', $estado)}}" role="button">
                             <i class="bi bi-pencil-square"></i>
                         </a>
+                        @endauth
                     </div>
                     <div class="col">
+                        @auth
                         <form action="{{route('estados.destroy', $estado)}}" method="POST" style="display: inline">
                             @csrf
                             @method('DELETE')
@@ -60,6 +63,7 @@
                                 <i class="bi bi-trash3"></i>
                             </button>
                         </form>
+                        @endauth
                     </div>
                     <div class="col d-flex justify-content-center">
                         @if($estado->incidencias->count()>0)

@@ -34,27 +34,39 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+//Rutas sin verificacion
 
-Route::controller(PostController::class)->group(function () {
+//Estado
+Route::controller(EstadoController::class)->group(function () {
+    Route::get('/estados', 'index')->name('estados.index');
+})->withoutMiddleware([Auth::class]);
+
+//Prioridad
+Route::controller(PrioridadController::class)->group(function () {
+    Route::get('/prioridads', 'index')->name('prioridads.index');
+})->withoutMiddleware([Auth::class]);
+
+//Categorias
+Route::controller(CategoriaController::class)->group(function () {
+    Route::get('/categorias', 'index')->name('categorias.index');
+})->withoutMiddleware([Auth::class]);
+
+//Departamentos
+Route::controller(DepartmentController::class)->group(function () {
     Route::get('/departments', 'index')->name('departments.index');
-    Route::get('/departments/{department}', 'show')->name('departments.show');
-    Route::get('/incidencias/{incidencia}', 'show')->name('incidencias.show');
-    Route::get('/incidencias/{incidencia}', [IncidenciaController::class, 'show'])->name('incidencia.show');
+})->withoutMiddleware([Auth::class]);
 
-    //Route::get('/mostrar-formulario', 'IncidenciaController@mostrarFormulario');
+//IncidenciaController
+Route::controller(IncidenciaController::class)->group(function () {
+    Route::get('/incidencias', 'index')->name('incidencias.index');
+    Route::get('/incidencias{incidencia}', 'show')->name('incidencias.show');
 })->withoutMiddleware([Auth::class]);
 
 
+//Home
 Route::get('/', function () {
     return redirect()->route('incidencias.index');
 });
-
-Route::resources([
-    'posts' => PostController::class,
-    'departments' => DepartmentController::class,
-    'categorias' => CategoriaController::class,
-    'incidencias' => IncidenciaController::class,
-    ]);
 
 Auth::routes();
 

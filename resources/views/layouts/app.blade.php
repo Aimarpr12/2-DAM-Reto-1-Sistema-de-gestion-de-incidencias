@@ -33,13 +33,10 @@
 
                 <a class="navbar-brand" href="{{route('incidencias.index')}}"><b>Incidencias</b></a>
                 <a class="navbar-brand" href="{{route('departments.index')}}"> Departamentos</a>
-                @auth
-                    @if(auth()->user()->department->id == 4)
-                        <a class="navbar-brand" href="{{route('categorias.index')}}"> Categorias</a>
-                        <a class="navbar-brand" href="{{route('prioridads.index')}}"> Prioridad</a>
-                        <a class="navbar-brand" href="{{route('estados.index')}}"> Estado</a>
-                    @endif
-                @endauth
+
+                <a class="navbar-brand" href="{{route('categorias.index')}}"> Categorias</a>
+                <a class="navbar-brand" href="{{route('prioridads.index')}}"> Prioridad</a>
+                <a class="navbar-brand" href="{{route('estados.index')}}"> Estado</a>
                 <button id="toggle-mode-button" style="border: none; background: none;">
                     <img id="light-mode-image" src="/images/modo_claro.ico" alt="Modo Claro" style="display: block; width: 30px; height: 30px;">
                     <img id="dark-mode-image" src="/images/modo_oscuro.ico" alt="Modo Oscuro" style="display: none; width: 20px; height: 20px;">

@@ -3,9 +3,17 @@
 @section('content')
 <div class="container">
     <form class="mt-2" name="edit_incidencia"
-    action="{{route('incidencias.update',$incidencia)}}" method="POST" enctype="multipart/form-data">
+    @if ($incidencia->id != null)
+        action="{{route('incidencias.update',$incidencia)}}"
+    @else
+        action="{{route('incidencias.store')}}"
+    @endif
+
+    method="POST" enctype="multipart/form-data">
     @csrf
-    @method('PUT')
+    @if ($incidencia->id != null)
+        @method('PUT')
+    @endif
     <div class="form-group mb-3">
         <label for="title" class="form-label">Inserte nombre de la incidencia:</label>
         <input type="text" class="form-control" id="title" name="title" required
@@ -59,10 +67,16 @@
     </div>
     <div class="row">
         <div class="col-md-2">
-            <button type="submit" class="btn btn-primary" name="">Actualizar</button>
+            <button type="submit" class="btn btn-primary" name="">
+                @if ($incidencia->id != null)
+                    Actualizar
+                @else
+                    Crear
+                @endif
+            </button>
         </div>
         <div class="col d-flex justify-content-end">
-            <button href="{{route('incidencias.show', ['incidencia' => $incidencia->id])}}" class="btn btn-secondary" name="">Atras</button>
+            <button href="{{route('incidencias.index')}}" class="btn btn-secondary" name="">Atras</button>
         </div>
     </div>
     </form>

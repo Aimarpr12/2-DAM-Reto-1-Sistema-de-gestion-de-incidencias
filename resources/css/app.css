@@ -105,3 +105,12 @@
     border-radius: 10px;
     color: #000;
 }
+
+.error{
+    color: red;
+}
+
+
+.icono-grande {
+    font-size: 2rem;
+}

@@ -21,7 +21,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view('categorias.create');
+        $categoria = new Categoria();
+        return view('categorias.edit',['categoria'=>$categoria]);
     }
 
     /**
@@ -83,9 +84,6 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        foreach ($categoria->incidencias as $incidencia){
-            $incidencia->categoria_id = null;
-        }
         $categoria->delete();
         return redirect()->route('categorias.index');
     }

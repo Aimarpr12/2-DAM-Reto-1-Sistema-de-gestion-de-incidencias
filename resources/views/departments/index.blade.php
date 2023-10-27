@@ -57,20 +57,25 @@
                             {{$department->user->count()}}
                         </div>
                         <div class="col d-flex justify-content-center">
+                            @auth
                             <a href="{{route('departments.edit', $department)}}" role="button">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
+                            @endauth
                         </div>
                         <div class="col d-flex justify-content-center">
+                            @auth
+
                             @if($department->user->count()== 0 && $department->incidencias->count() == 0)
-                                <form action="{{route('departments.destroy', $department)}}" method="POST" style="display: inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button style="border: none; background: none; " type="submit" onclick="return confirm('¿Estás seguro?')">
-                                        <i class="bi bi-trash3"></i>
-                                    </button>
-                                </form>
+                            <form action="{{route('departments.destroy', $department)}}" method="POST" style="display: inline">
+                                @csrf
+                                @method('DELETE')
+                                <button style="border: none; background: none; " type="submit" onclick="return confirm('¿Estás seguro?')">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </form>
                             @endif
+                            @endauth
                         </div>
                         <div class="col d-flex justify-content-center">
                             @if($department->user->sum(function ($user) {
@@ -131,11 +136,15 @@
                                         @if ($incidencia->prioridad !== null && $incidencia->prioridad->name !== null)
                                             {{$incidencia->prioridad->name}}
                                         @else
-                                            <span style="color: red;"><b>null</b></span>
+                                            <span class="error"><b>Vacio</b></span>
                                         @endif
                                     </div>
                                     <div class="col">
-                                        {{$incidencia->estado->name}}
+                                        @if ($incidencia->estado !== null && $incidencia->estado->name !== null)
+                                            {{$incidencia->estado->name}}
+                                        @else
+                                            <span class="error"><b>Vacio</b></span>
+                                        @endif
                                     </div>
                                 </div>
                                 @endforeach
