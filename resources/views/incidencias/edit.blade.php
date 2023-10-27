@@ -65,6 +65,18 @@
             @endforeach
         </select>
     </div>
+    <div class="form-group mb-3">
+        <label for="text" class="form-label">Departamento</label>
+        <select class="form-control" id="department_id" name="department_id" required>
+            @foreach ($departments as $department)
+                <option value={{ $department->id }}
+                    @if($department->id == $department->department_id)
+                        selected
+                    @endif
+                >{{$department->name}}</option>
+            @endforeach
+        </select>
+    </div>
     <div class="row">
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary" name="">

@@ -7,6 +7,7 @@ use App\Models\Prioridad;
 use App\Models\Estado;
 use App\Models\Categoria;
 use App\Models\Auth;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class IncidenciaController extends Controller
@@ -36,6 +37,7 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
+        $department = Department::all();
         $incidencia = new Incidencia();
         $prioridad = Prioridad::all();
         $estado = Estado::all();
@@ -44,7 +46,8 @@ class IncidenciaController extends Controller
             'incidencia'=>$incidencia,
             'prioridads' => $prioridad,
             'estados' => $estado,
-            'categorias' => $categoria
+            'categorias' => $categoria,
+            'departments' => $department
         ]);
     }
 
@@ -61,6 +64,7 @@ class IncidenciaController extends Controller
             $incidencia->prioridad_id = $request->prioridad_id;
             $incidencia->estado_id = $request->estado_id;
             $incidencia->categoria_id = $request->categoria_id;
+            $incidencia->department_id = $request->department_id;
             $incidencia->user_id = auth()->user()->id;
             $incidencia->save();
             return redirect()->route('incidencias.index');
@@ -84,7 +88,7 @@ class IncidenciaController extends Controller
             $incidencias = Incidencia::orderBy('created_at', 'desc')->get();
             return redirect()->route('incidencias.index', ['incidencias' => $incidencias]);
         }
-
+        $department = Department::all();
         $prioridad = Prioridad::all();
         $estado = Estado::all();
         $categoria = Categoria::all();
@@ -92,7 +96,8 @@ class IncidenciaController extends Controller
             'incidencia'=>$incidencia,
             'prioridads' => $prioridad,
             'estados' => $estado,
-            'categorias' => $categoria
+            'categorias' => $categoria,
+            'departments' => $department
         ]);
     }
 
@@ -112,6 +117,7 @@ class IncidenciaController extends Controller
         $incidencia->time = $request->time;
         $incidencia->prioridad_id = $request->prioridad_id;
         $incidencia->estado_id = $request->estado_id;
+        $incidencia->department_id = $request->department_id;
         $incidencia->categoria_id = $request->categoria_id;
         $incidencia->save();
 
