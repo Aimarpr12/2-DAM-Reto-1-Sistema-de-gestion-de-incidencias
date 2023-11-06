@@ -61,13 +61,13 @@ class IncidenciaController extends Controller
             $incidencia->title = $request->title;
             $incidencia->text = $request->text;
             $incidencia->time = $request->time;
-            $incidencia->prioridad_id = $request->prioridad_id;
             $incidencia->estado_id = $request->estado_id;
             $incidencia->categoria_id = $request->categoria_id;
             $incidencia->department_id = $request->department_id;
             $incidencia->user_id = auth()->user()->id;
             $incidencia->save();
-            return redirect()->route('incidencias.index');
+
+              return redirect()->route('incidencias.index');
 
     }
 

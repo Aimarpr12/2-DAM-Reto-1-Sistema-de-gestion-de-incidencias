@@ -61,16 +61,13 @@
                             </div>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="text" class="form-label">Departamento</label>
-                            <select class="form-control" id="department_id" name="department_id" required>
+                            <label for="department_id" class="form-label">Department</label>
+                            <select name="department_id" id="department_id" class="form-control">
                                 @foreach ($departments as $department)
-                                    <option value={{ $department->id }}
-                                        @if($department->id == $department->department_id)
-                                            selected
-                                        @endif
-                                    >{{$department->name}}</option>
+                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
                                 @endforeach
                             </select>
+
                         </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

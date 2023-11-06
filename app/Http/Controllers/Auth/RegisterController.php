@@ -43,11 +43,6 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function showRegistrationForm()
-    {
-        $departments = Department::all();
-        return view('auth.register', compact('departments'));
-    }
 
 
     /**
@@ -58,10 +53,12 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'department_id' => ['required', 'integer'],
         ]);
     }
 
@@ -71,14 +68,20 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
+    public function showRegistrationForm()
+    {
+        $departments = Department::all();
+        return view('auth.register', ['departments' => $departments]);
+    }
+
     protected function create(array $data)
     {
-        dd($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'department_id' => $data['department_id'],
+            'department_id' => $data['department_id']
         ]);
+
     }
 }

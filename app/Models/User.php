@@ -25,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'department_id',
     ];
 
     /**
@@ -51,6 +52,6 @@ class User extends Authenticatable
         return $this->hasMany(Incidencia::class);
     }
     public function department(): BelongsTo {
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Department::class, 'department_id');
     }
 }
