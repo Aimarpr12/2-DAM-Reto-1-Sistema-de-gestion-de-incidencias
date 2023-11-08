@@ -3,15 +3,15 @@
 <div class="container">
     <div class="row header" >
         <div class="col">
-            <h1>{{$department->name}}</h1>
+            <h1>{{$estado->name}}</h1>
         </div>
         <div class="col d-flex justify-content-end">
-            <p>Creado el {{$department->created_at}}</p>
+            <p>Creado el {{$estado->created_at}}</p>
         </div>
     </div>
     <br>
-    <div>
-        <p><b>Incidencias: </b></p>
+    <div class="col-md-11">
+        <b style="font-size: 20px">Incidencias:</b>
     </div>
     <div class="row">
         <div class="col-md-1 d-flex justify-content-center">
@@ -33,10 +33,9 @@
             <b>Estado</b>
         </div>
     </div>
-    <br>
-    @foreach ($department->user as $user)
-        @foreach ($user->incidencias->sortByDesc('created_at')->take(5) as $incidencia)
+    @foreach ($estado->incidencias->sortByDesc('created_at')->take(5) as $incidencia)
         <div class="row">
+
             <div class="col-md-1 d-flex justify-content-center">
                 <a href="{{route('incidencias.show', $incidencia)}}">
                     <i class="bi bi-eye"></i>
@@ -55,20 +54,15 @@
                 @if ($incidencia->prioridad !== null && $incidencia->prioridad->name !== null)
                     {{$incidencia->prioridad->name}}
                 @else
-                    <span class="error"><b>Vacio</b></span>
+                    <span style="color: red;"><b>null</b></span>
                 @endif
             </div>
             <div class="col">
-                @if ($incidencia->estado !== null && $incidencia->estado->name !== null)
-                    {{$incidencia->estado->name}}
-                @else
-                    <span class="error"><b>Vacio</b></span>
-                @endif
+                {{$incidencia->estado->name}}
             </div>
         </div>
-        @endforeach
     @endforeach
     <br>
-    <a class="btn btn-primary" href="{{route('departments.index')}}" role="button">Departamentos</a>
+    <a class="btn btn-primary" href="{{route('estados.index')}}" role="button">Estados</a>
 </div>
 @endsection

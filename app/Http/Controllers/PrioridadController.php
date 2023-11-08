@@ -50,7 +50,7 @@ class PrioridadController extends Controller
      */
     public function show(Prioridad $prioridad)
     {
-        //
+        return view('prioridads.show',['prioridad'=>$prioridad]);
     }
 
     /**

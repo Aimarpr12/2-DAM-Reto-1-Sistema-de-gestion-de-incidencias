@@ -18,6 +18,9 @@
         </div>
         <hr style="border: none; border-top: 3px solid #000000; width: 92%;">
         <div class="row">
+            <div class="col-md-1 d-flex justify-content-center">
+                <b>Ver</b>
+            </div>
             <div class="col">
                 <b>Nombre</b>
             </div>
@@ -37,6 +40,11 @@
         @foreach ($estados as $estado)
             <div class="categoria">
                 <div class="row">
+                    <div class="col-md-1 d-flex justify-content-center">
+                        <a href="{{route('estados.show', $estado)}}">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                    </div>
                     <div class="col">
                         {{$estado->name}}
                     </div>

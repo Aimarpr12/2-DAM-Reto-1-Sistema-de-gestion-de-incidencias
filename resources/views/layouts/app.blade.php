@@ -31,12 +31,12 @@
                 </a>
                 @endguest
 
-                <a class="navbar-brand" href="{{route('incidencias.index')}}"><b>Incidencias</b></a>
-                <a class="navbar-brand" href="{{route('departments.index')}}"> Departamentos</a>
+                <a class="navbar-brand {{ Request::is('incidencias*') ? 'active' : '' }}" href="{{ route('incidencias.index') }}">Incidencias</a>
+                <a class="navbar-brand {{ Request::is('departments*') ? 'active' : '' }}" href="{{ route('departments.index') }}">Departamentos</a>
+                <a class="navbar-brand {{ Request::is('categorias*') ? 'active' : '' }}" href="{{ route('categorias.index') }}">Categorias</a>
+                <a class="navbar-brand {{ Request::is('prioridads*') ? 'active' : '' }}" href="{{ route('prioridads.index') }}">Prioridad</a>
+                <a class="navbar-brand {{ Request::is('estados*') ? 'active' : '' }}" href="{{ route('estados.index') }}">Estado</a>
 
-                <a class="navbar-brand" href="{{route('categorias.index')}}"> Categorias</a>
-                <a class="navbar-brand" href="{{route('prioridads.index')}}"> Prioridad</a>
-                <a class="navbar-brand" href="{{route('estados.index')}}"> Estado</a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->

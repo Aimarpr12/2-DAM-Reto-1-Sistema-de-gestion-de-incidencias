@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col-md-1 d-flex justify-content-center">
                             <a href="{{route('departments.show', $department)}}">
-                                <i class="bi bi-eye-fill"></i>
+                                <i class="bi bi-eye"></i>
                             </a>
                         </div>
                         <div class="col">

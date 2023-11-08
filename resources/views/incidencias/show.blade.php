@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-1 d-flex justify-content-end">
             <a class="btn" href="{{route('incidencias.index')}}" role="button">
-                <i class="bi bi-arrow-return-left  icono-grande"></i>
+                <i class="bi bi-arrow-left  icono-grande"></i>
             </a>
         </div>
     </div>

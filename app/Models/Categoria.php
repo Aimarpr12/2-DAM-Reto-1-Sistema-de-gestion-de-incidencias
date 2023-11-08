@@ -12,4 +12,8 @@ class Categoria extends Model
     public function incidencias(): HasMany  {
         return $this->hasMany(Incidencia::class);
     }
+    public function allCategorias()
+    {
+        return Categoria::all();
+    }
 }

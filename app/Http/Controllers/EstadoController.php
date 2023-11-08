@@ -50,7 +50,7 @@ class EstadoController extends Controller
      */
     public function show(Estado $estado)
     {
-
+        return view('estados.show',['estado'=>$estado]);
     }
 
     /**
