@@ -33,63 +33,10 @@
                     <div>
                         <label for="comentario">Comentarios:</label>
                     </div>
-                </div>
-
-                <!--
-                @auth
-                <div class="row">
-                    <div class="col-md-1">
-                        <b>Comentarios:</b>
-                    </div>
-                    @if(auth()->user()->department->id == $incidencia->user->department->id)
-                        <div class="col-md-9 d-flex justify-content-end">
-                            <a href="{{route('comentarios.create', ['id' => $incidencia->id])}}" role="button">
-                                <i class="bi bi-file-earmark-plus"></i>
-                            </a>
-                        </div>
-
-                    @endif
-                </div>
-                @endauth
-            -->
+                </div>  
                 <br>
                 <div class="scrool-comentarios">
-                    @foreach ($incidencia->comentarios as $comentario)
-                        <div class="row comentario comentario-centrado">
-                            <div class="col-md-2">
-                                <div>
-                                    {{$comentario->user->name}}
-                                </div>
-                                <div>
-                                    <span style="font-size: 10px;">{{$comentario->created_at}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-7 txtComentario">
-                                {{$comentario->text}}
-                            </div>
-                            <div class="col-md-1">
-                                {{$comentario->time}}
-                            </div>
-                            <div class="col-md-1 txtComentario">
-                                @if(auth()->user()->id == $comentario->user->id)
-                                    <a href="{{route('comentarios.edit', $comentario)}}" role="button">
-                                        <i class="bi bi-pencil-square icono-grande"></i>
-                                    </a>
-                                @endif
-                            </div>
-                            <div class="col-md-1 txtComentario" >
-                                @if(auth()->user()->id == $incidencia->user->id)
-                                    <form action="{{route('comentarios.destroy', $comentario)}}" method="POST" style="display: inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" style="border: none; background: none;" onclick="return confirm('¿Estás seguro?')">
-                                            <i class="bi bi-trash3 icono-grande"></i>
-                                        </button>
-                                    </form>
-                                @endif
-                            </div>
-                        </div>
-                    @endforeach
+                    @include('plantillas/comentarios', ['incidencia' => $incidencia ])
                 </div>
                 @if(auth()->user()->department->id == $incidencia->user->department->id)
                     <form class="mt-2" name="create_departments"

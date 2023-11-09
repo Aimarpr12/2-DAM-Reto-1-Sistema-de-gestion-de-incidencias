@@ -23,11 +23,11 @@
             <div class="container">
                 @guest
                     <a class="navbar-brand" href="{{route('incidencias.index')}}">
-                        Comenta tu Chisme
+                        AINCIMI
                     </a>
                 @else
                 <a class="navbar-brand" href="{{route('incidencias.mine')}}">
-                    Comenta tu Chisme
+                    AINCIMI
                 </a>
                 @endguest
 
