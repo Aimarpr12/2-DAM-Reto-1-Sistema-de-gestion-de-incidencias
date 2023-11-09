@@ -25,14 +25,14 @@ class UserSeeder extends Seeder
             "name"=>"Milena",
             "email"=>"milena@elorrieta-errekamari.com",
             "password"=>bcrypt("12345678"),
-            "department_id"=>4,
+            "department_id"=>2,
             "created_at"=>now(),
             ]);
         DB::table('users')->insert([
             "name"=>"Juan",
             "email"=>"juan@elorrieta-errekamari.com",
             "password"=>bcrypt("12345678"),
-            "department_id"=>1,
+            "department_id"=>3,
             "created_at"=>now(),
             ]);
 

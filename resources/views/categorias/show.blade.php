@@ -10,7 +10,7 @@
         </div>
     </div>
     <br>
-    @include('plantillas/showIncidenciasList', ['incidencias' => $categoria->incidencias->sortByDesc('created_at')->take(5)])
+    @include('layouts/showIncidenciasList', ['incidencias' => $categoria->incidencias->sortByDesc('created_at')->take(5)])
     <br>
     <a class="btn btn-primary" href="{{route('categorias.index')}}" role="button">Categorias</a>
 </div>

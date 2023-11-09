@@ -5,12 +5,12 @@
         <div id="departamentos" class="col">
             <div class="row header">
                 <div class="col-md-10">
-                    <b>Departamento</b>
+                    <h1><b>Departamentos</b></h1>
                 </div>
                 <div class="col-md-1 d-flex justify-content-end">
                     @auth
                     <a href="{{route('departments.create')}}" role="button">
-                        <i class="bi bi-file-earmark-plus"></i>
+                        <i class="bi bi-file-earmark-plus icono-grande"></i>
                     </a>
                     @endauth
                 </div>
@@ -92,7 +92,7 @@
                         return $user->incidencias->count();
                     }) > 0)
                         <div class="incidencias col-md-10" style="display: none" >
-                            @include('plantillas/showIncidenciasList', ['incidencias' => $department->user->flatMap(function ($user) {
+                            @include('layouts/showIncidenciasList', ['incidencias' => $department->user->flatMap(function ($user) {
                                 return $user->incidencias->sortByDesc('created_at')->take(5);
                             })->sortByDesc('created_at')->take(5)])
                         </div>

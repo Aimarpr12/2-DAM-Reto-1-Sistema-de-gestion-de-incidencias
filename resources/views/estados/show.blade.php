@@ -10,7 +10,7 @@
         </div>
     </div>
     <br>
-    @include('plantillas/showIncidenciasList', ['incidencias' => $estado->incidencias->sortByDesc('created_at')->take(5)])
+    @include('layouts/showIncidenciasList', ['incidencias' => $estado->incidencias->sortByDesc('created_at')->take(5)])
     <br>
     <a class="btn btn-primary" href="{{route('estados.index')}}" role="button">Estados</a>
 </div>

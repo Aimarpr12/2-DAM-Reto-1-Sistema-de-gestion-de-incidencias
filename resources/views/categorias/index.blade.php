@@ -8,12 +8,12 @@
         <div class="row header">
 
             <div class="col-md-10">
-                <b>Categoria</b>
+                <h1><b>Categorias</b></h1>
             </div>
             <div class="col-md-1 d-flex justify-content-end">
                 @auth
                 <a href="{{route('categorias.create')}}" role="button">
-                    <i class="bi bi-file-earmark-plus"></i>
+                    <i class="bi bi-file-earmark-plus icono-grande"></i>
                 </a>
                 @endauth
             </div>
@@ -87,7 +87,7 @@
                 </div>
                 @if($categoria->incidencias->count()>0)
                     <div class="incidencias col-md-10" style="display: none" >
-                        @include('plantillas/showIncidenciasList', ['incidencias' => $categoria->incidencias->sortByDesc('created_at')->take(5)])
+                        @include('layouts/showIncidenciasList', ['incidencias' => $categoria->incidencias->sortByDesc('created_at')->take(5)])
                     </div>
                 @endif
             </div>

@@ -5,12 +5,12 @@
     <div id="categorias" class="col">
         <div class="row header">
             <div class="col-md-10">
-                <b>Incidencia</b>
+                <h1><b>Incidencias</b></h1>
             </div>
             <div class="col-md-1 d-flex justify-content-end">
                 @auth
                 <a href="{{route('incidencias.create')}}" role="button">
-                    <i class="bi bi-file-earmark-plus"></i>
+                    <i class="bi bi-file-earmark-plus icono-grande"></i>
                 </a>
                 @endauth
             </div>

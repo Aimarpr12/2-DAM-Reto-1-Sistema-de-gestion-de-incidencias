@@ -10,7 +10,7 @@
         </div>
     </div>
     <br>
-    @include('plantillas/showIncidenciasList', ['incidencias' => $department->user->flatMap(function ($user) {
+    @include('layouts/showIncidenciasList', ['incidencias' => $department->user->flatMap(function ($user) {
         return $user->incidencias->sortByDesc('created_at')->take(5);
     })->sortByDesc('created_at')->take(5)])
     <br>

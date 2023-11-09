@@ -57,6 +57,21 @@
     margin-left: 20px;
 }
 
+/* Modo claro */
+[data-bs-theme="light"] .comentario {
+    background-color: rgb(255, 255, 255);
+    color: #000000;
+}
+
+/* Modo oscuro */
+[data-bs-theme="dark"] .comentario {
+    background-color: #212529;
+    color: #ffffff;
+}
+
+
+
+
 .active {
     font-weight: bold;
 }

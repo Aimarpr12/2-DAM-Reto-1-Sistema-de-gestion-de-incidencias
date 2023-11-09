@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-1 d-flex justify-content-end">
             <a class="btn" href="{{route('incidencias.index')}}" role="button">
-                <i class="bi bi-arrow-left  icono-grande"></i>
+                <i class="bi bi-arrow-left icono-grande"></i>
             </a>
         </div>
     </div>
@@ -33,10 +33,10 @@
                     <div>
                         <label for="comentario">Comentarios:</label>
                     </div>
-                </div>  
+                </div>
                 <br>
                 <div class="scrool-comentarios">
-                    @include('plantillas/comentarios', ['incidencia' => $incidencia ])
+                    @include('layouts/comentarios', ['incidencia' => $incidencia ])
                 </div>
                 @if(auth()->user()->department->id == $incidencia->user->department->id)
                     <form class="mt-2" name="create_departments"

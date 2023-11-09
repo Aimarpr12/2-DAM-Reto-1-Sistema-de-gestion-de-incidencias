@@ -10,8 +10,8 @@
         </div>
     </div>
     <br>
-    @include('plantillas/showIncidenciasList', ['incidencias' => $prioridad->incidencias->sortByDesc('created_at')->take(5)])
+    @include('layouts/showIncidenciasList', ['incidencias' => $prioridad->incidencias->sortByDesc('created_at')->take(5)])
     <br>
-    <a class="btn btn-primary" href="{{route('prioridads.index')}}" role="button">Prioridad</a>
+    <a class="btn btn-primary" href="{{route('prioridads.index')}}" role="button">Prioridades</a>
 </div>
 @endsection
