@@ -69,21 +69,27 @@
                     </div>
                     <div class="col-md-1">
                         @if ($incidencia->prioridad !== null && $incidencia->prioridad->name !== null)
+                        <a href="{{route('prioridads.show', $incidencia->prioridad)}}">
                             {{$incidencia->prioridad->name}}
+                        </a>
                         @else
                             <span class="error"><b>Vacio</b></span>
                         @endif
                     </div>
                     <div class="col-md-1">
                         @if ($incidencia->categoria !== null && $incidencia->categoria->name !== null)
+                        <a href="{{route('categorias.show', $incidencia->categoria)}}">
                             {{$incidencia->categoria->name}}
+                        </a>
                         @else
                             <span class="error"><b>Vacio</b></span>
                         @endif
                     </div>
                     <div class="col-md-1">
                         @if ($incidencia->estado !== null && $incidencia->estado->name !== null)
+                            <a href="{{route('estados.show', $incidencia->estado)}}">
                             {{$incidencia->estado->name}}
+                            </a>
                         @else
                             <span class="error"><b>Vacio</b></span>
                         @endif

@@ -57,7 +57,7 @@ class IncidenciaSeeder extends Seeder
                 'prioridad_id' => 3,
                 'estado_id' => 3,
                 'categoria_id' => 3,
-                'department_id' => 3,
+                'department_id' => 2,
                 "created_at"=>now()
             ]
             ]);
