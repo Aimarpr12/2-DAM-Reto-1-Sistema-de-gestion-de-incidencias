@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\IncidenciaController;
@@ -23,7 +22,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('incidencias/mine', [IncidenciaController::class, 'mine'])->name('incidencias.mine');
     Route::resource('comentarios', ComentarioController::class)->only(['store']);
     Route::resources([
-        'posts' => PostController::class,
         'departments' => DepartmentController::class,
         'categorias' => CategoriaController::class,
         'incidencias' => IncidenciaController::class,
@@ -65,6 +63,10 @@ Route::controller(IncidenciaController::class)->group(function () {
 
 //Home
 Route::get('/', function () {
+    return redirect()->route('incidencias.index');
+});
+
+Route::get('/home', function () {
     return redirect()->route('incidencias.index');
 });
 

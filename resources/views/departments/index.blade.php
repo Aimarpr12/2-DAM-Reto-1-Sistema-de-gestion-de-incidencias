@@ -82,8 +82,8 @@
                                 return $user->incidencias->count();
                             }) > 0)
                             <button style="border: none; background: none;" class="toggle-incidencias btn btn-primary btn-sm" data-target=".incidencias">
-                                <img class="mostrar-image img" src="images/mostrar.ico" alt="Mostrar" style="display: block; width: 30px; height: 30px;">
-                                <img class="ocultar-image img" src="images/ocultar.ico" alt="Ocultar" style="display: none; width: 20px; height: 20px;">
+                                <img class="mostrar-image img" src="images/mostrar.ico" alt="Mostrar" style="display: none; width: 30px; height: 30px;">
+                                <img class="ocultar-image img" src="images/ocultar.ico" alt="Ocultar" style="display: block; width: 20px; height: 20px;">
                             </button>
                             @endif
                         </div>
@@ -91,7 +91,7 @@
                     @if ($department->user->sum(function ($user) {
                         return $user->incidencias->count();
                     }) > 0)
-                        <div class="incidencias col-md-10" style="display: none" >
+                        <div class="incidencias col-md-10" style="display: block" >
                             @include('layouts/showIncidenciasList', ['incidencias' => $department->user->flatMap(function ($user) {
                                 return $user->incidencias->sortByDesc('created_at')->take(5);
                             })->sortByDesc('created_at')->take(5)])

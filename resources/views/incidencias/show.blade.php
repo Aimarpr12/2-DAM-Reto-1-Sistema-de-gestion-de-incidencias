@@ -70,11 +70,13 @@
                 @endauth
             </div>
             <div class="col-md-3">
-                @if ($incidencia->estado !== null && $incidencia->estado->name !== null)
-                    Estado: {{$incidencia->estado->name}}
-                @else
-                    Estado: <span class="error"><b>Vacio</b></span>
-                @endif
+                <div class="cat-prio">
+                    @if ($incidencia->estado !== null && $incidencia->estado->name !== null)
+                        Estado: {{$incidencia->estado->name}}
+                    @else
+                        Estado: <span class="error"><b>Vacio</b></span>
+                    @endif
+                </div>
                 <div class="cat-prio">
                     @if ($incidencia->categoria !== null && $incidencia->categoria->name !== null)
                     Categoria: {{$incidencia->categoria->name}}

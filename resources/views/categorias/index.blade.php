@@ -79,14 +79,14 @@
                     <div class="col d-flex justify-content-center">
                         @if($categoria->incidencias->count() > 0)
                         <button style="border: none; background: none;" class="toggle-incidencias btn btn-primary btn-sm" data-target=".incidencias">
-                            <img class="mostrar-image" src="images/mostrar.ico" alt="Mostrar" style="display: block; width: 30px; height: 30px;">
-                            <img class="ocultar-image" src="images/ocultar.ico" alt="Ocultar" style="display: none; width: 20px; height: 20px;">
+                            <img class="mostrar-image" src="images/mostrar.ico" alt="Mostrar" style="display: none; width: 30px; height: 30px;">
+                            <img class="ocultar-image" src="images/ocultar.ico" alt="Ocultar" style="display: block; width: 20px; height: 20px;">
                         </button>
                         @endif
                     </div>
                 </div>
                 @if($categoria->incidencias->count()>0)
-                    <div class="incidencias col-md-10" style="display: none" >
+                    <div class="incidencias col-md-10" style="display: block" >
                         @include('layouts/showIncidenciasList', ['incidencias' => $categoria->incidencias->sortByDesc('created_at')->take(5)])
                     </div>
                 @endif
