@@ -88,15 +88,11 @@
                             @endif
                         </div>
                     </div>
-                    @if ($department->user->sum(function ($user) {
-                        return $user->incidencias->count();
-                    }) > 0)
-                        <div class="incidencias col-md-10" style="display: block" >
-                            @include('layouts/showIncidenciasList', ['incidencias' => $department->user->flatMap(function ($user) {
-                                return $user->incidencias->sortByDesc('created_at')->take(5);
-                            })->sortByDesc('created_at')->take(5)])
-                        </div>
-                    @endif
+                    @if($department->incidencias->count()>0)
+                    <div class="incidencias col-md-10" style="display: block" >
+                        @include('layouts/showIncidenciasList', ['incidencias' => $department->incidencias->sortByDesc('created_at')->take(5)])
+                    </div>
+                @endif
                 </div>
             @endforeach
     </div>
