@@ -7,6 +7,7 @@ use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\PrioridadController;
 use App\Http\Controllers\EstadoController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,5 @@ Route::get('/home', function () {
 });
 
 Auth::routes();
-
 
 
