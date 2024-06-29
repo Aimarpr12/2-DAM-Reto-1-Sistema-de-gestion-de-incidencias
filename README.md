@@ -50,7 +50,7 @@ Para ejecutar este proyecto, necesitarás tener instalados los siguientes compon
 ### Paso 1: Clonar el repositorio
 
 ```bash
-git clone https://github.com/PRSpidy/2-DAM-Reto-1-Sistema-de-gestion-de-incidencias.git
+git clone https://github.com/Aimarpr12/2-DAM-Reto-1-Sistema-de-gestion-de-incidencias.git
 cd 2-DAM-Reto-1-Sistema-de-gestion-de-incidencias
 ```
 
@@ -93,5 +93,5 @@ Abre el navegador y visita http://localhost:8000.
 
 
 ## Autores
-- [Aimar Pelea](https://github.com/PRSpidy)
+- [Aimar Pelea](https://github.com/Aimarpr12)
 - [Milena Cuellar](https://github.com/Milena2301)
